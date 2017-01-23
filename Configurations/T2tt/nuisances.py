@@ -76,15 +76,7 @@ nuisances['normWW']  = {
 nuisances['normTW']  = {
     'name'  : 'normTW', 
     'samples'  : {
-        '05_ST'                            : '1.5',
-        },
-    'type'  : 'lnN',
-    }
-
-nuisances['normTTW']  = {
-    'name'  : 'normTTW', 
-    'samples'  : {
-        '09_TTW'                           : '1.5',
+        '05_ST'                            : '1.1',
         },
     'type'  : 'lnN',
     }
