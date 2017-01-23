@@ -1,5 +1,5 @@
                  
-structure['T2tt_mStop-350to400_Sm350_Xm225']  = {  
+structure['T2tt']  = {  
     'isSignal' : 1,
     'isData'   : 0 
     }
