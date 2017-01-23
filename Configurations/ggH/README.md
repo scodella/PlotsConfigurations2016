@@ -25,6 +25,11 @@ Steps to get datacards and plots:
     mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
     mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True    --inputDir=eos/user/a/amassiro/HWW2015/ICHEP/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
 
+    mkShapes.py      --pycfg=configuration_iteos.py  --doThreads=True   --inputDir=eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/  
+    mkShapes.py      --pycfg=configuration.py  --doThreads=True   --inputDir=eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/
+    
+    
+    
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHJustPlot.root
     mkPlot.py        --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
@@ -32,7 +37,25 @@ Steps to get datacards and plots:
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH.root
     mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggHtestplot.root
     
+    mkDatacards.py   --pycfg=configuration.py  --inputFile=rootFile/plots_ggH_all.root
+    
 
+lxbatch submission:
+
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/ \
+                --doBatch=True --batchSplit=Cuts,Samples   \
+                --batchQueue=8nh
+    
+    mkBatch.py --status
+    
+    (when jobs are done)
+    
+    mkShapes.py --pycfg=configuration_lxbatch.py  --inputDir=root://eosuser.cern.ch//eos/user/r/rodrigo/HWW2016/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__wwSel/   \
+                --doHadd=True --batchSplit=Cuts,Samples
+
+    
+    
+    
 Pruning:
 
     cd /afs/cern.ch/user/a/amassiro/Limit/ModificationDatacards
@@ -88,6 +111,11 @@ Auto tests:
             scripts/drawNLL.C
 
     
+    root -l ../higgsCombineLHScanHICHEP2016combined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEP2016combined.MultiDimFit.mH125.root   \
+            scripts/drawNLLObs.C
+ 
+ 
     
     
     cat ../result.Significance.ggHcombined.v1.txt.pruned.txt
@@ -159,133 +187,118 @@ Auto tests:
     cat  ../result.Significance.superCombination.2016.txt.pruned.txt
 
 
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.txt
+    cat  ../result.MaxLikelihoodFit.ICHEP2016.2j.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vbf.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.vh2j.txt
     cat  ../result.MaxLikelihoodFit.ICHEP2016.wh3l.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.2j.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
-    cat  ../result.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    
+    cat  ../result.Significance.ICHEP2016.0jet.me.txt
+    cat  ../result.Significance.ICHEP2016.0jet.em.txt
+    cat  ../result.Significance.ICHEP2016.1jet.me.txt
+    cat  ../result.Significance.ICHEP2016.1jet.em.txt
+    cat  ../result.Significance.ICHEP2016.0jet.txt
+    cat  ../result.Significance.ICHEP2016.1jet.txt
+    cat  ../result.Significance.ICHEP2016.2j.txt
     cat  ../result.Significance.ICHEP2016.vbf.txt
     cat  ../result.Significance.ICHEP2016.vh2j.txt
-    cat  ../result.Significance.ICHEP2016.2j.txt
     cat  ../result.Significance.ICHEP2016.wh3l.txt
-    cat  ../result.Significance.ICHEP2016.1jet.txt
-    cat  ../result.Significance.ICHEP2016.0jet.txt
-    cat  ../result.Significance.ICHEP2016.0jet.em.txt
-    cat  ../result.Significance.ICHEP2016.0jet.me.txt
-    cat  ../result.Significance.ICHEP2016.1jet.em.txt
-    cat  ../result.Significance.ICHEP2016.1jet.me.txt
+    
     cat  ../result.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
     cat  ../result.Significance.ICHEP2016.v1.txt.pruned.txt
 
+    
+    
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.me.txt
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.em.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.me.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.em.txt
+    cat  ../result.MaxLikelihoodFit.Combined.0jet.txt
+    cat  ../result.MaxLikelihoodFit.Combined.1jet.txt
+    cat  ../result.MaxLikelihoodFit.Combined.2j.txt
     cat  ../result.MaxLikelihoodFit.Combined.vbf.txt
     cat  ../result.MaxLikelihoodFit.Combined.vh2j.txt
     cat  ../result.MaxLikelihoodFit.Combined.wh3l.txt
-    cat  ../result.MaxLikelihoodFit.Combined.2j.txt
-    cat  ../result.MaxLikelihoodFit.Combined.1jet.txt
-    cat  ../result.MaxLikelihoodFit.Combined.0jet.txt
-    cat  ../result.MaxLikelihoodFit.Combined.0jet.em.txt
-    cat  ../result.MaxLikelihoodFit.Combined.0jet.me.txt
-    cat  ../result.MaxLikelihoodFit.Combined.1jet.em.txt
-    cat  ../result.MaxLikelihoodFit.Combined.1jet.me.txt
+    
+    cat  ../result.Significance.Combined.0jet.me.txt
+    cat  ../result.Significance.Combined.0jet.em.txt
+    cat  ../result.Significance.Combined.1jet.me.txt
+    cat  ../result.Significance.Combined.1jet.em.txt
+    cat  ../result.Significance.Combined.0jet.txt
+    cat  ../result.Significance.Combined.1jet.txt
+    cat  ../result.Significance.Combined.2j.txt
     cat  ../result.Significance.Combined.vbf.txt
     cat  ../result.Significance.Combined.vh2j.txt
-    cat  ../result.Significance.Combined.2j.txt
     cat  ../result.Significance.Combined.wh3l.txt
-    cat  ../result.Significance.Combined.1jet.txt
-    cat  ../result.Significance.Combined.0jet.txt
-    cat  ../result.Significance.Combined.0jet.em.txt
-    cat  ../result.Significance.Combined.0jet.me.txt
-    cat  ../result.Significance.Combined.1jet.em.txt
-    cat  ../result.Significance.Combined.1jet.me.txt
+    
     cat  ../result.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
     cat  ../result.Significance.superCombination.Total.txt.pruned.txt
     
 
     
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.2j.txt
-    cat   ../result.Data.MaxLikelihoodFit.Moriond2016.wh3l.txt
-
-    cat   ../result.Data.Significance.Moriond2016.vbf.txt
-    cat   ../result.Data.Significance.Moriond2016.vh2j.txt
-    cat   ../result.Data.Significance.Moriond2016.2j.txt
-    cat   ../result.Data.Significance.Moriond2016.wh3l.txt
+    
 
 
-    cat   ../result.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat   ../result.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat   ../result.MaxLikelihoodFit.Moriond2016.2j.txt
-    cat   ../result.MaxLikelihoodFit.Moriond2016.wh3l.txt
 
-    cat   ../result.Significance.Moriond2016.vbf.txt
-    cat   ../result.Significance.Moriond2016.vh2j.txt
-    cat   ../result.Significance.Moriond2016.2j.txt
-    cat   ../result.Significance.Moriond2016.wh3l.txt
-
-
-    cat ../result.data.Significance.superCombination.2015.txt.pruned.txt
-    cat ../result.data.MaxLikelihoodFit.superCombination.2015.txt.pruned.txt
     
     
     
-    
-    
-    
-    cat  ../result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
-    cat  ../result.data.Significance.superCombination.2016.txt.pruned.txt
-    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vbf.txt
-    cat  ../result.data.MaxLikelihoodFit.Moriond2016.vh2j.txt
-    cat  ../result.data.MaxLikelihoodFit.Moriond2016.2j.txt
 
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
     cat  ../result.data.MaxLikelihoodFit.ICHEP2016.vbf.txt
     cat  ../result.data.MaxLikelihoodFit.ICHEP2016.vh2j.txt
     cat  ../result.data.MaxLikelihoodFit.ICHEP2016.wh3l.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.0jet.me.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.1jet.me.txt
+
+    cat  ../result.data.Significance.ICHEP2016.0jet.me.txt
+    cat  ../result.data.Significance.ICHEP2016.0jet.em.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.me.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.em.txt
+    cat  ../result.data.Significance.ICHEP2016.0jet.txt
+    cat  ../result.data.Significance.ICHEP2016.1jet.txt
+    cat  ../result.data.Significance.ICHEP2016.2j.txt
     cat  ../result.data.Significance.ICHEP2016.vbf.txt
     cat  ../result.data.Significance.ICHEP2016.vh2j.txt
-    cat  ../result.data.Significance.ICHEP2016.2j.txt
     cat  ../result.data.Significance.ICHEP2016.wh3l.txt
-    cat  ../result.data.Significance.ICHEP2016.1jet.txt
-    cat  ../result.data.Significance.ICHEP2016.0jet.txt
-    cat  ../result.data.Significance.ICHEP2016.0jet.em.txt
-    cat  ../result.data.Significance.ICHEP2016.0jet.me.txt
-    cat  ../result.data.Significance.ICHEP2016.1jet.em.txt
-    cat  ../result.data.Significance.ICHEP2016.1jet.me.txt
-    cat  ../result.data.MaxLikelihoodFit.ICHEP2016.v1.txt.pruned.txt
-    cat  ../result.data.Significance.ICHEP2016.v1.txt.pruned.txt
+    
+     
+    cat  ../result.data.MaxLikelihoodFit.superCombination.2016.txt.pruned.txt
+    cat  ../result.data.Significance.superCombination.2016.txt.pruned.txt
 
+    
+    
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.me.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.em.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.txt
+    cat  ../result.data.MaxLikelihoodFit.Combined.2j.txt
     cat  ../result.data.MaxLikelihoodFit.Combined.vbf.txt
     cat  ../result.data.MaxLikelihoodFit.Combined.vh2j.txt
     cat  ../result.data.MaxLikelihoodFit.Combined.wh3l.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.2j.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.0jet.me.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.em.txt
-    cat  ../result.data.MaxLikelihoodFit.Combined.1jet.me.txt
+    
+    cat  ../result.data.Significance.Combined.0jet.me.txt
+    cat  ../result.data.Significance.Combined.0jet.em.txt
+    cat  ../result.data.Significance.Combined.1jet.me.txt
+    cat  ../result.data.Significance.Combined.1jet.em.txt
+    cat  ../result.data.Significance.Combined.0jet.txt
+    cat  ../result.data.Significance.Combined.1jet.txt
+    cat  ../result.data.Significance.Combined.2j.txt
     cat  ../result.data.Significance.Combined.vbf.txt
     cat  ../result.data.Significance.Combined.vh2j.txt
-    cat  ../result.data.Significance.Combined.2j.txt
     cat  ../result.data.Significance.Combined.wh3l.txt
-    cat  ../result.data.Significance.Combined.1jet.txt
-    cat  ../result.data.Significance.Combined.0jet.txt
-    cat  ../result.data.Significance.Combined.0jet.em.txt
-    cat  ../result.data.Significance.Combined.0jet.me.txt
-    cat  ../result.data.Significance.Combined.1jet.em.txt
-    cat  ../result.data.Significance.Combined.1jet.me.txt
+    
     cat  ../result.data.MaxLikelihoodFit.superCombination.Total.txt.pruned.txt
     cat  ../result.data.Significance.superCombination.Total.txt.pruned.txt
 
@@ -384,7 +397,12 @@ Make plots:
          --samplesFile    /afs/cern.ch/user/a/amassiro/Framework/CMSSW_7_6_3/src/PlotsConfigurations/Configurations/ggH/samples.py \
          --cutName hww2l2v_13TeV_em_1j
 
-       
+
+Impact plots and pulls:
+
+    combine Combined.vbf.pruned.txt       -M MaxLikelihoodFit   -n   Combined.vbf.pruned.txt.MaxLikelihoodFit.root
+    python ggH/scripts/diffNuisances.py -a mlfitCombined.vbf.pruned.txt.MaxLikelihoodFit.root.root -g plots.root
+    
 
 Draw likelihood scan:
 
@@ -456,11 +474,25 @@ Combine secret options:
     --X-rtd FITTER_BOUND
 
 Datacards checks
-    
+
+    cd ~/Framework/Combine/CMSSW_7_4_7/src/LatinoCombineTools/Tools/
+    cmsenv
+    text2workspace.py superCombination.Total.txt.pruned.txt   -o    superCombination.Total.txt.pruned.txt.workspace.root 
+    combine    -M MaxLikelihoodFit -t -1 --expectSignal 1   superCombination.Total.txt.pruned.txt.workspace.root      -n    superCombination.Total.txt.pruned.txt.workspace.MaxLikelihoodFit.root
+     
+    python diffNuisances.py  \
+           -a  /afs/cern.ch/user/a/amassiro/Framework/CMSSW_8_0_5/src/PlotsConfigurations/Configurations/higgsCombinesuperCombination.Total.txt.pruned.txt.workspace.MaxLikelihoodFit.root.MaxLikelihoodFit.mH120.root \
+           -g plots.root  &> result.txt    
+
+           
+           
+           
+           
     text2workspace.py Moriond2016.txt    -o    test.root
     combine    -M MaxLikelihoodFit -t -1 --expectSignal 1    test.root
     python diffNuisances.py -a  mlfit.root -g plots.root  &> result.txt
     
+
     
     combineCards.py   of0j13=ggHMoriond/datacards/hww2l2v_13TeV_of0j/mllVSmth/datacard.txt \
                       of0j13Top=ggHMoriondTop/datacards/hww2l2v_13TeV_top_of0j/events/datacard.txt \
@@ -1021,5 +1053,27 @@ Prepare fakes:
 
       
       
+    eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/05Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/05Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016B_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/11Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/11Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/26Jul2016_Run2016D_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/26Jul2016_Run2016D_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/08Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/08Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/15Jul2016_Run2016C_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/         eos/user/r/rodrigo/HWW2016/15Jul2016_Run2016C_PromptReco_repro/
+    cp -r eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/21Jun2016_v2_Run2016B_PromptReco_repro/l2loose__hadd__ICHEPjson__EpTCorr__fakeW12fb__wwSel/      eos/user/r/rodrigo/HWW2016/21Jun2016_v2_Run2016B_PromptReco_repro/
+
       
+
+
+
       

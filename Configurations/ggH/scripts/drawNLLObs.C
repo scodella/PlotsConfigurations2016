@@ -24,8 +24,6 @@ void drawNLLObs() {
   
   cc->SetGrid();
   
-  graphScan->GetXaxis()->SetTitle("#mu");
-  graphScan->GetYaxis()->SetTitle("-2 #Delta LL");
   
   graphScan->SetTitle("");
   graphScan->SetMarkerStyle(21);
@@ -61,12 +59,73 @@ void drawNLLObs() {
   tex2->SetLineWidth(2);
   
   TLatex * tex3;
-  tex3 = new TLatex(0.236,0.92,"L = 2.3 fb^{-1}  Preliminary");
+  tex3 = new TLatex(0.236,0.92,"L = 12.3 fb^{-1}  Preliminary");
   tex3->SetNDC();
   tex3->SetTextFont(52);
   tex3->SetTextSize(0.035);
   tex3->SetLineWidth(2);
   
+  
+  
+  //---- clean duplicate (it happens during lxbatch scan)
+  std::vector <double> x_std;
+  std::map <double, double> x_y_map;
+  double x_value;
+  double y_value;
+  for (int ip = 0; ip<graphScan->GetN(); ip++) {
+    
+    graphScan->GetPoint (ip, x_value, y_value);
+//     std::cout << " x_value = " << x_value << std::endl;
+    if (std::find(x_std.begin(), x_std.end(), x_value) != x_std.end()) {
+      graphScan->RemovePoint(ip);
+      //       std::cout << "removed " << ip << std::endl;
+      ip--;
+    }
+    else {
+      x_std.push_back(x_value);
+      x_y_map[x_value] = y_value;
+    }
+  }
+  
+  graphScan->Set(0);
+   
+  int ip = 0;
+  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
+    graphScan->SetPoint( ip, it->first , it->second);
+    ip++;
+  }
+  
+  
+  x_std.clear();
+  x_y_map.clear();
+  for (int ip = 0; ip<graphScanData->GetN(); ip++) {
+    
+    graphScanData->GetPoint (ip, x_value, y_value);
+//     std::cout << " x_value = " << x_value << std::endl;
+    if (std::find(x_std.begin(), x_std.end(), x_value) != x_std.end()) {
+      graphScanData->RemovePoint(ip);
+      ip--;
+    }
+    else {
+      x_std.push_back(x_value);
+      x_y_map[x_value] = y_value;
+    }
+  }
+  
+  graphScanData->Set(0);
+  
+  ip = 0;
+  for (std::map<double, double>::iterator it = x_y_map.begin(); it != x_y_map.end(); it++) {
+    graphScanData->SetPoint( ip, it->first , it->second);
+    ip++;
+  }
+  
+  
+  
+  //---- plot ----
+  
+  graphScan->GetXaxis()->SetTitle("#mu");
+  graphScan->GetYaxis()->SetTitle("-2 #Delta LL");
   
   graphScan  ->Draw("al");
   
