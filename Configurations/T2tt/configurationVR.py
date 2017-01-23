@@ -2,10 +2,10 @@
 
 tag = 'mytest'
 
-outputDir = 'test'
-outputDirDatacard = 'Datacards'
+outputDir = 'ShapesVR'
+outputDirDatacard = 'DatacardsVR'
 
-inputDir = '/afs/cern.ch/user/s/scodella/work/Stop/CodeDevelopment/CMSSW_8_0_21/src/AnalysisCMS/minitrees/rootfiles/'
+inputDir = '/afs/cern.ch/user/s/scodella/work/Stop/CodeDevelopment/CMSSW_8_0_21/src/AnalysisCMS/minitreesB/rootfiles/'
 
 # luminosity to normalize to
 lumi = 36.
@@ -37,7 +37,7 @@ nuisancesFile = 'nuisances.py'
 ## shape range. can be an
 ## - hard-coded label
 ## - a tuple (nx,xmin,xmax)
-## - 2d tuple (nx,xmin,xmax,ny,ymin,ymax)
+y## - 2d tuple (nx,xmin,xmax,ny,ymin,ymax)
 ## - 1d array ([x0,..,xn],)
 ## - 2d array ([x0,..,xn],[y0,...,ym])
 #range = 'mth-mll-hilospin'

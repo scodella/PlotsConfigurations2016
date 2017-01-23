@@ -59,6 +59,9 @@ void MassScan() {
 
   }
 
+  gStyle->SetOptStat(0);
+  MassLimit->SetXTitle("M_{#tilde t} [GeV]");
+  MassLimit->SetYTitle("M_{#tilde #Chi^{0}_{1}} [GeV]");
   MassLimit->Draw("TEXTCOLZ");
 
 }

@@ -2,10 +2,10 @@
 
 tag = 'mytest'
 
-outputDir = 'test'
-outputDirDatacard = 'Datacards'
-
-inputDir = '/afs/cern.ch/user/s/scodella/work/Stop/CodeDevelopment/CMSSW_8_0_21/src/AnalysisCMS/minitrees/rootfiles/'
+outputDir = 'Shapes'
+outputDirDatacard = 'tempDatacards'
+ 
+inputDir = '/afs/cern.ch/user/s/scodella/work/Stop/CodeDevelopment/CMSSW_8_0_21/src/AnalysisCMS/minitreesB/rootfiles/'
 
 # luminosity to normalize to
 lumi = 36.
