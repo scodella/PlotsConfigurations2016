@@ -92,7 +92,7 @@ nuisances['Reco']  = {
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
-        '10_TTZ'                           : '1.',
+        '10_TTZ'                          : '1.',
         '07_ZJets'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         },
@@ -108,7 +108,7 @@ nuisances['Idiso']  = {
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
-        '10_TTZ'                           : '1.',
+        '10_TTZ'                          : '1.',
         '07_ZJets'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         },
@@ -132,7 +132,7 @@ nuisances['Trigger']  = {
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
-        '10_TTZ'                           : '1.',
+        '10_TTZ'                          : '1.',
         '07_ZJets'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         },
@@ -148,7 +148,7 @@ nuisances['Btag']  = {
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
-        '10_TTZ'                           : '1.',
+        '10_TTZ'                          : '1.',
         '07_ZJets'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         },
@@ -159,6 +159,22 @@ nuisances['BtagFS']  = {
     'name'  : 'Trigger', 
     'samples'  : {
         'T2tt'                             : '1.',
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['JES']  = {
+    'name'  : 'JES', 
+    'samples'  : {
+        'T2tt'                             : '1.',
+        '03_VZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJets'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
         },
     'type'  : 'shape',
     }
