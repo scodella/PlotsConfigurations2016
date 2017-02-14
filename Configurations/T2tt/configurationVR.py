@@ -2,8 +2,8 @@
 
 tag = 'mytest'
 
-outputDir = 'ShapesVR'
-outputDirDatacard = 'DatacardsVR'
+outputDir = 'Shapes'
+outputDirDatacard = 'tempDatacards'
 
 inputDir = '/afs/cern.ch/user/s/scodella/work/Stop/CodeDevelopment/CMSSW_8_0_21/src/AnalysisCMS/minitreesB/rootfiles/'
 
