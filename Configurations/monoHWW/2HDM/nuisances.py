@@ -1,5 +1,3 @@
-# nuisances
-
 #nuisances = {}
 
 # name of samples here must match keys in samples.py    
@@ -23,9 +21,9 @@ nuisances['lumi2016']  = {
         'ggWW'     : '1.062',
         'Vg'       : '1.062',
         'VgS'      : '1.062',
-        'DY'       : '1.062',    # --> datadriven
-        'WW'       : '1.062',    # --> datadriven
-        'top'      : '1.062',    # --> datadriven
+        # 'DY'       : '1.062',    # --> datadriven
+        # 'WW'       : '1.062',    # --> datadriven
+        # 'top'      : '1.062',    # --> datadriven
         },
     'type'  : 'lnN',
     }
@@ -654,8 +652,8 @@ for mZp in ZpMasses:
 #                 },
 
 
-#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
-#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
+#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxup__wwSel/',
+#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__JESMaxdo__wwSel/' 
 # }
 # # We have only wwSel samples for this nuisance!!!
 # for mZp in ZpMasses:
@@ -666,7 +664,7 @@ for mZp in ZpMasses:
 
 
 
-# FIXME : restore it once we have the niusance ready                                 
+# # FIXME : restore it once we have the niusance ready                                 
 
 # nuisances['electronpt']  = {
 #                 'name'  : 'scale_e', 
@@ -689,9 +687,8 @@ for mZp in ZpMasses:
 #                    'Vg' : ['1', '1'],
 #                    'VgS': ['1', '1'],
 #                 },
-
-#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
-#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
+#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTup__wwSel/',
+#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepElepTdo__wwSel/' 
 # }
 # # We have only wwSel samples for this nuisance!!!
 # for mZp in ZpMasses:
@@ -700,7 +697,7 @@ for mZp in ZpMasses:
 #             nuisances['electronpt']['samples'].update({'monoH_' + mZp + '_' + mA0: ['1','1']})
                 
 
-# FIXME : restore it once we have the niusance ready                                 
+# # FIXME : restore it once we have the niusance ready                                 
    
 # nuisances['muonpt']  = {
 #                 'name'  : 'scale_m', 
@@ -724,8 +721,8 @@ for mZp in ZpMasses:
 #                    'VgS': ['1', '1'],
 #                 },
 
-#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
-#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
+#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTup__wwSel/',
+#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__LepMupTdo__wwSel/' 
 
 # }
 
@@ -760,8 +757,8 @@ for mZp in ZpMasses:
 #                    'VgS': ['1', '1'],
 #                 },
 
-#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
-#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_v2/07Jun2016_spring16_mAODv2_12pXfbm1/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
+#                 'folderUp'   : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__METup__wwSel/',
+#                 'folderDown' : 'eosBig/cms/store/group/phys_higgs/cmshww/amassiro/HWW12fb_repro/07Jun2016_spring16_mAODv2_12pXfbm1_repro/MCl2loose__hadd__bSFL2pTEff__l2tight__METdo__wwSel/' 
 # }
 # # We have only wwSel samples for this nuisance!!!
 # for mZp in ZpMasses:

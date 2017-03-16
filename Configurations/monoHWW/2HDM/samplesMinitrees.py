@@ -117,10 +117,10 @@ samples['Fake']  = {    'name': [
         'fakeW_Run2016D_PromptReco_SingleMuon_26Jul2016.root',
         'fakeW_Run2016D_PromptReco_SingleElectron_26Jul2016.root',
         'fakeW_Run2016D_PromptReco_MuonEG_26Jul2016.root',
-        #
+        
         #               
         ],     
-                        'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2))',              #   weight/cut 
+                        'weight' : '(fakeW2l0j*(njet==0)+fakeW2l1j*(njet==1)+fakeW2l2j*(njet>=2)) / 5',              #   weight/cut ( / 5 -> MET+X blind policy)
                         'isData': ['all'],
                         'weights' : [
         #
@@ -421,7 +421,7 @@ samples['DATA']  = {   'name': [
         'Run2016D_PromptReco_SingleElectron_26Jul2016.root', 
         
         ] ,     
-                       'weight' : '1',
+                       'weight' : 'event % 5 == 0', # MET+X blind policy
                        'weights' : [
         #
         'std_vector_trigger[8]  || std_vector_trigger[6]',

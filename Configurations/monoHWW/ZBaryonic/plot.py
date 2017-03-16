@@ -116,7 +116,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.69
+                  'scale'    : 0.552
               }
 
 
@@ -170,7 +170,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.89,
+                  'scale'    : 0.87,
                   
                   'cuts'  : {
                        'ww2l2v_13TeV_ww_of0j'   : 0.98 ,
@@ -185,7 +185,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 0.65,   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 0.74,   # ele/mu trigger efficiency   datadriven
                   
                   'cuts'  : {
                        'ww2l2v_13TeV_ww_of'     : 1.05 ,
@@ -370,11 +370,11 @@ for mZb in ZbarMasses :
         if mZb == "1000" and Chi == "150" :
             continue
         plot['Zbar_' + mZb + '_' + Chi] = { 
-            'nameHR' : 'mZp=' + mZb + ' GeV, mChi=' + Chi + ' GeV',
+            'nameHR' : 'mZp=' + mZb + ' GeV, mChi=' + Chi + ' GeV x 100',
             'color': i, # kBlue + i
             'isSignal' : 2,
             'isData'   : 0,
-            'scale'    : 1
+            'scale'    : 100
             }
         i = i + 1
 
@@ -385,7 +385,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
@@ -398,7 +398,8 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.6/fb' # 
 #legend['lumi'] = 'L = 4.3/fb' # 
 #legend['lumi'] = 'L = 6.3/fb' # 
-legend['lumi'] = 'L = 12.9/fb' # 
+#legend['lumi'] = 'L = 12.9/fb' # 
+legend['lumi'] = 'L = 2.58/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

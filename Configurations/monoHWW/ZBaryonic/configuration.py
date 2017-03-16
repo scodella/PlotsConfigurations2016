@@ -16,6 +16,7 @@ cutsFile = 'cuts.py'
 # file with list of samples
 samplesFile = 'samplesMinitrees.py' 
 #samplesFile = 'samples.py' 
+#samplesFile = 'samples_bis.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -24,7 +25,8 @@ plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 # lumi = 2.264
-lumi = 12.9
+# lumi = 12.9
+lumi = 2.58
 
 
 # used by mkPlot to define output directory for plots

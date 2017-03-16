@@ -116,7 +116,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.69
+                  'scale'    : 0.63
               }
 
 
@@ -185,7 +185,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 0.65,   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 0.75,   # ele/mu trigger efficiency   datadriven
                   
                   'cuts'  : {
                        'ww2l2v_13TeV_ww_of'     : 1.05 ,
@@ -339,11 +339,11 @@ for mZp in ZpMasses :
         if ((mZp == "600" and (mA0 == "300" or mA0 == "400")) or ((mZp == "800" and (mA0 == "300" or mA0 == "400" or mA0 == "500" or mA0 == "600"))) or (mZp != "600" and mZp != "800")) :
             if mA0 == "300" :
                 plot['monoH_' + mZp + '_' + mA0]  = {  
-                    'nameHR' : 'mZ=' + mZp + ' GeV, mA0=' + mA0 + ' GeV',
+                    'nameHR' : 'mZ=' + mZp + ' GeV, mA0=' + mA0 + ' GeV x 100',
                     'color': 800 + i, # kOrange + i
                     'isSignal' : 2,
                     'isData'   : 0,
-                    'scale'    : 1   #
+                    'scale'    : 100   #
                     }
                 i = i + 1
             else :
@@ -398,7 +398,7 @@ plot['DATA']  = {
 #legend['lumi'] = 'L = 2.6/fb' # 
 #legend['lumi'] = 'L = 4.3/fb' # 
 #legend['lumi'] = 'L = 6.3/fb' # 
-legend['lumi'] = 'L = 12.9/fb' # 
+legend['lumi'] = 'L = 2.58/fb' # 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
