@@ -2,11 +2,15 @@
 //---- generic 2D plot
 //
 
-void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1") {
+#include "tdrstyle.C"
+
+
+void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1", int FillHighLL = 1) {
   
   
   gStyle->SetOptStat(0);
   
+  setTDRStyle();
   
   
   #include "TROOT.h"
@@ -83,10 +87,12 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   // //   graphScan->Draw("cont4z");
   graphScan->GetHistogram()->GetZaxis()->SetRangeUser(0,9.99);  
   
-  for (int i=0; i<graphScan->GetHistogram()->GetSize(); i++) {
-//     std::cout << " [ " << i << " ] = " << graphScan->GetHistogram()->GetBinContent(i+1) << std::endl;
-    if (graphScan->GetHistogram()->GetBinContent(i+1) == 0) { 
-      graphScan->GetHistogram()->SetBinContent(i+1, 100);
+  if (FillHighLL) {
+    for (int i=0; i<graphScan->GetHistogram()->GetSize(); i++) {
+      //     std::cout << " [ " << i << " ] = " << graphScan->GetHistogram()->GetBinContent(i+1) << std::endl;
+      if (graphScan->GetHistogram()->GetBinContent(i+1) == 0) { 
+        graphScan->GetHistogram()->SetBinContent(i+1, 100);
+      }
     }
   }
   
@@ -95,8 +101,9 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
 
   
   TCanvas* cc2 = new TCanvas ("cc2","",800,600); 
-  cc2->SetRightMargin(0.15);
- 
+//   cc2->SetRightMargin(0.15);
+  cc2->SetRightMargin(0.19);
+  
   graphScan->Draw("contz");
   graphScan->Draw("colz");
   
@@ -109,6 +116,34 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   HistStreamFn_ph2->SetLineStyle(2);
 //   HistStreamFn_ph2->GetZaxis()->SetRangeUser(0,9.99);  
   HistStreamFn_ph2->Draw("CONT1 LIST SAME");
+  
+  
+  cc->cd();  
+  HistStreamFn_ph2->Draw("CONT Z LIST");
+  cc->Update();
+  TObjArray *conts = (TObjArray*) gROOT->GetListOfSpecials()->FindObject("contours");
+  std::cout << " conts = " << conts << std::endl;
+  std::cout << " conts->GetSize() = " << conts->GetSize() << std::endl;
+  TGraph* gr_1sigma = (TGraph*) ( ((TList*) conts->At(0))->First());
+  TGraph* gr_2sigma = (TGraph*) ( ((TList*) conts->At(1))->First());
+  
+  
+  gr_1sigma->SetLineWidth(2);
+  gr_1sigma->SetLineStyle(1);
+  gr_1sigma->SetLineColor(1);
+  
+  
+  gr_2sigma->SetLineWidth(2);
+  gr_2sigma->SetLineStyle(7);
+  gr_2sigma->SetLineColor(1);
+  
+  
+   
+  
+  cc2->cd();
+  
+  gr_1sigma->Draw("L");
+  gr_2sigma->Draw("L");
   
 //   gStyle->SetPadRightMargin(0.2);
   
@@ -156,6 +191,70 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   crossMin->Draw("P");
   
 //   cc2->SetGrid();
+  
+  
+  
+  TLegend* leg = new TLegend (0.60,0.70,0.80,0.85);
+  leg->SetBorderSize(1);
+  leg->AddEntry(gr_1sigma,"1 #sigma","l");
+  leg->AddEntry(gr_2sigma,"2 #sigma","l");
+  leg->AddEntry(crossMin,"Best fit","P");
+  leg->AddEntry(cross11,"SM","P");
+  leg->Draw();
+  
+  
+  
+  
+  
+  //---- draw cms preliminary and similar
+  
+  cc2->SetTicks();
+//   cc2->SetFillColor(0);
+//   cc2->SetBorderMode(0);
+//   cc2->SetBorderSize(2);
+//   cc2->SetTickx(1);
+//   cc2->SetTicky(1);
+//   cc2->SetRightMargin(0.05);
+//   cc2->SetBottomMargin(0.12);
+//   cc2->SetFrameBorderMode(0);
+  cc2->SetTopMargin(0.12);
+  
+  TLatex * tex;
+//   tex = new TLatex(0.94,0.92,"13 TeV");
+  tex = new TLatex(0.80,0.92,"13 TeV");
+  tex->SetNDC();
+  tex->SetTextAlign(31);
+  tex->SetTextFont(42);
+  tex->SetTextSize(0.04);
+  tex->SetLineWidth(2);
+  
+//   TLatex * tex2 = new TLatex(0.14,0.92,"CMS Preliminary");
+  TLatex * tex2 = new TLatex(0.16,0.92,"CMS");
+  tex2->SetNDC();
+  tex2->SetTextFont(61);
+  tex2->SetTextSize(0.04);
+  tex2->SetLineWidth(2);
+
+  TLatex * texPre = new TLatex(0.23,0.92,"Preliminary");
+  texPre->SetNDC();
+  texPre->SetTextFont(52);
+  texPre->SetTextSize(0.035);
+  texPre->SetLineWidth(2);
+  
+  TLatex * tex3;
+  //   tex3 = new TLatex(0.236,0.92,"L = 12.9 fb^{-1}  Preliminary");
+//   tex3 = new TLatex(0.236,0.92,"L = 15.2 fb^{-1}");
+  tex3 = new TLatex(0.55,0.92,"L = 15.2 fb^{-1}   (13 TeV)");
+  tex3->SetNDC();
+  tex3->SetTextFont(52);
+  tex3->SetTextSize(0.035);
+  tex3->SetLineWidth(2);
+  
+//   tex->Draw("same");
+  tex2->Draw("same");
+  texPre->Draw("same");
+  tex3->Draw("same");
+  
   
   
   

@@ -828,6 +828,18 @@ combineTool.py -d superCombination.Total.txt.pruned.txt.workspace.BIS.root -M Mu
                --algo=grid  --saveSpecifiedNuis all  --setPhysicsModelParameterRanges  r=-0.1,2.5    -n "LHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan"   \
                --points 400    --job-mode lxbatch --task-name lxbatch-superCombination-total-newAGcode --sub-opts='-q 1nd' --split-points 1 
 
+
+
+          
+r99t ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan.root \
+        scripts/Draw2DLine.cxx\(\"#mu\",\"WW0j\",\"r\",\"WWnorm0j\",\"WWnorm0j\",\"1\"\)
+ 
+    
+python  scripts/plot2Dscan.py -i ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan.root
+          
+          
+                    
+                  
                
                
                
@@ -1167,7 +1179,7 @@ combineTool.py -d Combined.vh2j.pruned.txt.workspace.root -M MultiDimFit    \
 # combine -M ProfileLikelihood --significance         Combined.wh3l.pruned.txt              >   result.data.Significance.Combined.wh3l.txt
 # 
 # 
-# combine -M ProfileLikelihood --significance         Combined.1jet.txt             >   result.data.Significance.Combined.1jet.txt
+# combine -M ProfileLikelihood --significance      --setPhysicsModelParameterRanges r=-10,10     Combined.1jet.txt             >   result.data.Significance.Combined.1jet.txt
 # combine -M ProfileLikelihood --significance         Combined.0jet.txt             >   result.data.Significance.Combined.0jet.txt
 # combine -M ProfileLikelihood --significance         Combined.0jet.em.txt          >   result.data.Significance.Combined.0jet.em.txt
 # combine -M ProfileLikelihood --significance         Combined.0jet.me.txt          >   result.data.Significance.Combined.0jet.me.txt
@@ -1290,8 +1302,8 @@ combine -M MultiDimFit    Combined.1jet.txt            -m 125 --algo=grid --poin
 combine -M MultiDimFit    Combined.0jet.txt            -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.0jet.txt"
 combine -M MultiDimFit    Combined.0jet.em.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.0jet.em.txt"
 combine -M MultiDimFit    Combined.0jet.me.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.0jet.me.txt"
-combine -M MultiDimFit    Combined.1jet.em.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.1jet.em.txt"
-combine -M MultiDimFit    Combined.1jet.me.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Combined.1jet.me.txt"
+combine -M MultiDimFit    Combined.1jet.em.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4  --X-rtd OPTIMIZE_BOUNDS=0  --robustFit 1 -n "LHScanDATA.Combined.1jet.em.txt"
+combine -M MultiDimFit    Combined.1jet.me.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4  --X-rtd OPTIMIZE_BOUNDS=0  --robustFit 1 -n "LHScanDATA.Combined.1jet.me.txt"
                                                        
 
 
@@ -1312,64 +1324,168 @@ combine -M MultiDimFit    Combined.1jet.me.txt         -m 125 --algo=grid --poin
 
 
 
-                                                       
+text2workspace.py Combined.1jet.me.txt   -o  Combined.1jet.me.txt.root  
+text2workspace.py Combined.1jet.em.txt   -o  Combined.1jet.em.txt.root  
+
+          
+
+combineTool.py -d Combined.1jet.me.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  -n "lxbatch.combined.1jet.me.mc"   \
+               --setPhysicsModelParameterRanges r=-2,4  -t  -1  --expectSignal 1    \
+               --points 400    --job-mode lxbatch --task-name lxbatch-combined-1jet-me-mc   --sub-opts='-q 1nd' --split-points 1 
+
+               
+
+combineTool.py -d Combined.1jet.me.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  -n "lxbatch.combined.1jet.me.data"   \
+               --setPhysicsModelParameterRanges r=-2,4      \
+               --points 400    --job-mode lxbatch --task-name lxbatch-combined-1jet-me-data   --sub-opts='-q 1nd' --split-points 1 
+
+     
+
+combineTool.py -d Combined.1jet.em.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  -n "lxbatch.combined.1jet.em.mc"   \
+               --setPhysicsModelParameterRanges r=-2,4  -t  -1  --expectSignal 1    \
+               --points 400    --job-mode lxbatch --task-name lxbatch-combined-1jet-em-mc   --sub-opts='-q 1nd' --split-points 1 
+
+               
+
+combineTool.py -d Combined.1jet.em.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0  --saveSpecifiedNuis all  -n "lxbatch.combined.1jet.em.data"   \
+               --setPhysicsModelParameterRanges r=-2,4      \
+               --points 400    --job-mode lxbatch --task-name lxbatch-combined-1jet-em-data   --sub-opts='-q 1nd' --split-points 1 
+
+
+               
+               
+               
+               
+               
+               
+               
+# hadd higgsCombinelxbatch.combined.1jet.me.mc.POINTS.root     higgsCombinelxbatch.combined.1jet.me.mc.POINTS.*.MultiDimFit.mH120.root
+# hadd higgsCombinelxbatch.combined.1jet.me.data.POINTS.root   higgsCombinelxbatch.combined.1jet.me.data.POINTS.*.MultiDimFit.mH120.root
+
+# ls -alrth higgsCombinelxbatch.combined.1jet.me.mc.POINTS.*.MultiDimFit.mH120.root  | grep -v 36K | grep -v 35K | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombinelxbatch.combined.1jet.me.data.POINTS.*.MultiDimFit.mH120.root  | grep -v 36K | grep -v 35K | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
+
+
+    
+               
+# hadd higgsCombinelxbatch.combined.1jet.em.mc.POINTS.root     higgsCombinelxbatch.combined.1jet.em.mc.POINTS.*.MultiDimFit.mH120.root
+# hadd higgsCombinelxbatch.combined.1jet.em.data.POINTS.root   higgsCombinelxbatch.combined.1jet.em.data.POINTS.*.MultiDimFit.mH120.root
+
+# ls -alrth higgsCombinelxbatch.combined.1jet.em.mc.POINTS.*.MultiDimFit.mH120.root  | grep -v 36K | grep -v 35K | grep -v 34K | awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombinelxbatch.combined.1jet.em.data.POINTS.*.MultiDimFit.mH120.root  | grep -v 36K | grep -v 35K | grep -v 34K | awk '{print "rm "$9}' | /bin/sh
+
+
+
+python  scripts/plot2Dscan.py -i ../higgsCombinelxbatch.combined.1jet.me.data.POINTS.root
+python  scripts/plot2Dscan.py -i ../higgsCombinelxbatch.combined.1jet.em.data.POINTS.root
+          
+
+
+               
 
 
 root -l ../higgsCombineLHScanMC.Combined.0jet.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.0jet.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
-
+mv ll.png plotLL/0jet.png
 
 root -l ../higgsCombineLHScanMC.Combined.0jet.em.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.0jet.em.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
+mv ll.png plotLL/0jet.em.png
 
 
 root -l ../higgsCombineLHScanMC.Combined.0jet.me.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.0jet.me.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
+mv ll.png plotLL/0jet.me.png
 
 
             
 root -l ../higgsCombineLHScanMC.Combined.1jet.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.1jet.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
+mv ll.png plotLL/1jet.png
 
-            
+         
+         
+         
+root -l ../higgsCombinelxbatch.combined.1jet.em.mc.POINTS.root   \
+        ../higgsCombinelxbatch.combined.1jet.em.data.POINTS.root  \
+            scripts/drawNLLObs.C
+         
+         
 root -l ../higgsCombineLHScanMC.Combined.1jet.em.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.1jet.em.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
+mv ll.png plotLL/1jet.em.png
 
 
+
+root -l ../higgsCombinelxbatch.combined.1jet.me.mc.POINTS.root   \
+        ../higgsCombinelxbatch.combined.1jet.me.data.POINTS.root  \
+            scripts/drawNLLObs.C
+         
 root -l ../higgsCombineLHScanMC.Combined.1jet.me.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.1jet.me.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
+mv ll.png plotLL/1jet.me.png
 
 
 root -l ../higgsCombineLHScanMC.Combined.2j.pruned.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.2j.pruned.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
-            
+mv ll.png plotLL/2j.png
+
             
 root -l ../higgsCombineLHScanMC.Combined.vbf.pruned.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.vbf.pruned.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
-            
+mv ll.png plotLL/vbf.png
+
             
 root -l ../higgsCombineLHScanMC.Combined.vh2j.pruned.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.vh2j.pruned.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
-            
+mv ll.png plotLL/vh2j.png
+
             
 root -l ../higgsCombineLHScanMC.Combined.wh3l.pruned.txt.MultiDimFit.mH125.root  \
         ../higgsCombineLHScanDATA.Combined.wh3l.pruned.txt.MultiDimFit.mH125.root  \
             scripts/drawNLLObs.C
+mv ll.png plotLL/wh3l.png
+
             
             
             
             
+root -l ../higgsCombineLHScanHICHEPTotalcombinedLXBATCH.POINTS.root  \
+           ../higgsCombineLHScanDATAHICHEPTotalcombinedLXBATCH.POINTS.root   \
+            scripts/drawNLLObs.C
+        
+          
+
+          
+root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.root   \
+            scripts/drawNLLObs.C
+
+   
+root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+           ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotal.root   \
+            scripts/drawNLLObs.C
+
             
-            
+root -l ../higgsCombineLHScanHICHEPTotalcombined.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATAHICHEPcombinedLXBATCHtotalWithNewNuisancesScan.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL/0jet.png
+
+ 
             
             
             
@@ -1436,6 +1552,85 @@ combine -M ProfileLikelihood --significance        Moriond2016.vbf.pruned.txt   
 combine -M ProfileLikelihood --significance        Moriond2016.vh2j.pruned.txt            >   result.data.Significance.Moriond2016.vh2j.txt
 combine -M ProfileLikelihood --significance        Moriond2016.2j.pruned.txt              >   result.data.Significance.Moriond2016.2j.txt
 combine -M ProfileLikelihood --significance        Moriond2016.wh3l.pruned.txt            >   result.data.Significance.Moriond2016.wh3l.txt
+
+
+
+
+
+
+
+
+combine -M MultiDimFit    Moriond2016.vbf.pruned.txt      -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Moriond2016.vbf.pruned.txt"
+combine -M MultiDimFit    Moriond2016.vh2j.pruned.txt     -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-6,7 -n "LHScanDATA.Moriond2016.vh2j.pruned.txt"
+combine -M MultiDimFit    Moriond2016.2j.pruned.txt       -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-6,7 -n "LHScanDATA.Moriond2016.2j.pruned.txt"
+combine -M MultiDimFit    Moriond2016.wh3l.pruned.txt     -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-13,14 -n "LHScanDATA.Moriond2016.wh3l.pruned.txt"
+                                     
+combine -M MultiDimFit    Moriond2016.vbf.pruned.txt      -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Moriond2016.vbf.pruned.txt"
+combine -M MultiDimFit    Moriond2016.vh2j.pruned.txt     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-6,7 -n "LHScanMC.Moriond2016.vh2j.pruned.txt"
+combine -M MultiDimFit    Moriond2016.2j.pruned.txt       -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-6,7 -n "LHScanMC.Moriond2016.2j.pruned.txt"
+combine -M MultiDimFit    Moriond2016.wh3l.pruned.txt     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-13,14 -n "LHScanMC.Moriond2016.wh3l.pruned.txt"
+                                                        
+                                                       
+                                                       
+                                                       
+                                                       
+                                                       
+ 
+ 
+root -l ../higgsCombineLHScanMC.Moriond2016.2j.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Moriond2016.2j.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_Moriond2016//2j.png
+
+            
+root -l ../higgsCombineLHScanMC.Moriond2016.vbf.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Moriond2016.vbf.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_Moriond2016//vbf.png
+
+            
+root -l ../higgsCombineLHScanMC.Moriond2016.vh2j.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Moriond2016.vh2j.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_Moriond2016//vh2j.png
+
+            
+root -l ../higgsCombineLHScanMC.Moriond2016.wh3l.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Moriond2016.wh3l.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_Moriond2016//wh3l.png
+
+            
+
+            
+combine -M MultiDimFit    superCombination.2015.txt.pruned.txt.root     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.Moriond2016.combine.pruned.txt"
+combine -M MultiDimFit    superCombination.2015.txt.pruned.txt.root     -m 125 --algo=grid --points 400                              --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.Moriond2016.combine.pruned.txt"
+
+
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4    superCombination.2015.txt.pruned.txt.root                                      >   result.data.Data.MaxLikelihoodFit.Moriond2016.combined.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4    superCombination.2015.txt.pruned.txt.root     -t  -1  --expectSignal 1         >   result.data.MC.MaxLikelihoodFit.Moriond2016.combined.txt
+
+combine -M ProfileLikelihood --significance     superCombination.2015.txt.pruned.txt.root                                      >   result.data.Data.Significance.Moriond2016.combined.txt
+combine -M ProfileLikelihood --significance     superCombination.2015.txt.pruned.txt.root     -t  -1  --expectSignal 1         >   result.data.MC.Significance.Moriond2016.combined.txt
+
+
+
+            
+            
+ 
+root -l ../higgsCombineLHScanMC.Moriond2016.combine.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.Moriond2016.combine.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 #                                             
 #                                             
 
@@ -1451,7 +1646,7 @@ combine -M ProfileLikelihood --significance        Moriond2016.wh3l.pruned.txt  
 combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      ICHEP2016.vbf.pruned.txt             >   result.data.MaxLikelihoodFit.ICHEP2016.vbf.txt
 combine -M MaxLikelihoodFit   --rMin=-6 --rMax=8      ICHEP2016.vh2j.pruned.txt            >   result.data.MaxLikelihoodFit.ICHEP2016.vh2j.txt
 combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      ICHEP2016.2j.pruned.txt              >   result.data.MaxLikelihoodFit.ICHEP2016.2j.txt
-combine -M MaxLikelihoodFit   --rMin=-2 --rMax=6      ICHEP2016.wh3l.pruned.txt            >   result.data.MaxLikelihoodFit.ICHEP2016.wh3l.txt
+combine -M MaxLikelihoodFit   --rMin=-4 --rMax=6      ICHEP2016.wh3l.pruned.txt            >   result.data.MaxLikelihoodFit.ICHEP2016.wh3l.txt
 
 
 
@@ -1480,8 +1675,157 @@ combine -M ProfileLikelihood --significance         ICHEP2016.1jet.me.txt       
 
 
 
+combine -M MultiDimFit    ICHEP2016.vbf.pruned.txt      -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-4,6 -n "LHScanDATA.ICHEP2016.vbf.pruned.txt"
+combine -M MultiDimFit    ICHEP2016.vh2j.pruned.txt     -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-6,8 -n "LHScanDATA.ICHEP2016.vh2j.pruned.txt"
+combine -M MultiDimFit    ICHEP2016.2j.pruned.txt       -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-4,6 -n "LHScanDATA.ICHEP2016.2j.pruned.txt"
+combine -M MultiDimFit    ICHEP2016.wh3l.pruned.txt     -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-4,6 -n "LHScanDATA.ICHEP2016.wh3l.pruned.txt"
+                                                                                                                                               
+combine -M MultiDimFit    ICHEP2016.1jet.txt            -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 --X-rtd OPTIMIZE_BOUNDS=0  --robustFit 1    -n "LHScanDATA.ICHEP2016.1jet.txt"
+combine -M MultiDimFit    ICHEP2016.0jet.txt            -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.ICHEP2016.0jet.txt"
+combine -M MultiDimFit    ICHEP2016.0jet.em.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.ICHEP2016.0jet.em.txt"
+combine -M MultiDimFit    ICHEP2016.0jet.me.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.ICHEP2016.0jet.me.txt"
+combine -M MultiDimFit    ICHEP2016.1jet.em.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-2,4  --X-rtd OPTIMIZE_BOUNDS=0  --robustFit 1 -n "LHScanDATA.ICHEP2016.1jet.em.txt"
+combine -M MultiDimFit    ICHEP2016.1jet.me.txt         -m 125 --algo=grid --points 400 --setPhysicsModelParameterRanges r=-4,4  --X-rtd OPTIMIZE_BOUNDS=0  --robustFit 1 -n "LHScanDATA.ICHEP2016.1jet.me.txt"
+                                                       
 
 
+
+
+combine -M MultiDimFit    ICHEP2016.vbf.pruned.txt      -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-4,6 -n "LHScanMC.ICHEP2016.vbf.pruned.txt"
+combine -M MultiDimFit    ICHEP2016.vh2j.pruned.txt     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-6,8 -n "LHScanMC.ICHEP2016.vh2j.pruned.txt"
+combine -M MultiDimFit    ICHEP2016.2j.pruned.txt       -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-4,6 -n "LHScanMC.ICHEP2016.2j.pruned.txt"
+combine -M MultiDimFit    ICHEP2016.wh3l.pruned.txt     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-4,6 -n "LHScanMC.ICHEP2016.wh3l.pruned.txt"
+                                                                                                                                                  
+combine -M MultiDimFit    ICHEP2016.1jet.txt            -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 --X-rtd OPTIMIZE_BOUNDS=0  --robustFit 1  -n "LHScanMC.ICHEP2016.1jet.txt"
+combine -M MultiDimFit    ICHEP2016.0jet.txt            -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.ICHEP2016.0jet.txt"
+combine -M MultiDimFit    ICHEP2016.0jet.em.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.ICHEP2016.0jet.em.txt"
+combine -M MultiDimFit    ICHEP2016.0jet.me.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.ICHEP2016.0jet.me.txt"
+combine -M MultiDimFit    ICHEP2016.1jet.em.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.ICHEP2016.1jet.em.txt"
+combine -M MultiDimFit    ICHEP2016.1jet.me.txt         -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-4,4 -n "LHScanMC.ICHEP2016.1jet.me.txt"
+                                                       
+
+     
+text2workspace.py ICHEP2016.1jet.txt   -o  ICHEP2016.1jet.txt.root  
+      
+
+combineTool.py -d ICHEP2016.1jet.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "lxbatch.ICHEP2016.1jet.mc"   \
+               --setPhysicsModelParameterRanges r=-2,4  -t  -1  --expectSignal 1    \
+               --points 400    --job-mode lxbatch --task-name lxbatch-ICHEP2016-1jet-mc   --sub-opts='-q 1nd' --split-points 1 
+
+               
+
+combineTool.py -d ICHEP2016.1jet.txt.root -M MultiDimFit    \
+               --algo=grid   --X-rtd OPTIMIZE_BOUNDS=0   -n "lxbatch.ICHEP2016.1jet.data"   \
+               --setPhysicsModelParameterRanges r=-2,4      \
+               --points 400    --job-mode lxbatch --task-name lxbatch-ICHEP2016-1jet-data   --sub-opts='-q 1nd' --split-points 1 
+
+# hadd higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.root   higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.*.MultiDimFit.mH120.root
+# hadd higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.root   higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.*.MultiDimFit.mH120.root
+
+# ls -alrth higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6 | grep -v 6.7 | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
+# ls -alrth higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.*.MultiDimFit.mH120.root  | grep -v 6.6 | grep -v 6.7 | grep -v 6.8 | awk '{print "rm "$9}' | /bin/sh
+
+
+
+
+root -l ../higgsCombineLHScanMC.ICHEP2016.0jet.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.0jet.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//0jet.png
+
+root -l ../higgsCombineLHScanMC.ICHEP2016.0jet.em.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.0jet.em.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//0jet.em.png
+
+
+root -l ../higgsCombineLHScanMC.ICHEP2016.0jet.me.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.0jet.me.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//0jet.me.png
+
+
+
+root -l ../higgsCombinelxbatch.ICHEP2016.1jet.mc.POINTS.root  \
+        ../higgsCombinelxbatch.ICHEP2016.1jet.data.POINTS.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//1jet.png
+
+
+root -l ../higgsCombineLHScanMC.ICHEP2016.1jet.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.1jet.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//1jet.png
+
+            
+root -l ../higgsCombineLHScanMC.ICHEP2016.1jet.em.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.1jet.em.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//1jet.em.png
+
+
+root -l ../higgsCombineLHScanMC.ICHEP2016.1jet.me.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.1jet.me.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//1jet.me.png
+
+
+root -l ../higgsCombineLHScanMC.ICHEP2016.2j.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.2j.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//2j.png
+
+            
+root -l ../higgsCombineLHScanMC.ICHEP2016.vbf.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.vbf.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//vbf.png
+
+            
+root -l ../higgsCombineLHScanMC.ICHEP2016.vh2j.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.vh2j.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//vh2j.png
+
+            
+root -l ../higgsCombineLHScanMC.ICHEP2016.wh3l.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.wh3l.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+mv ll.png plotLL_ICHEP2016//wh3l.png
+
+            
+            
+            
+            
+TO BE DONE
+            
+combine -M MultiDimFit    superCombination.2016.txt.pruned.txt.workspace.root     -m 125 --algo=grid --points 400 -t  -1  --expectSignal 1     --setPhysicsModelParameterRanges r=-2,4 -n "LHScanMC.ICHEP2016.combine.pruned.txt"
+combine -M MultiDimFit    superCombination.2016.txt.pruned.txt.workspace.root     -m 125 --algo=grid --points 400                              --setPhysicsModelParameterRanges r=-2,4 -n "LHScanDATA.ICHEP2016.combine.pruned.txt"
+
+
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4    superCombination.2016.txt.pruned.txt.workspace.root                                      >   result.data.Data.MaxLikelihoodFit.ICHEP2016.combined.txt
+combine -M MaxLikelihoodFit   --rMin=-2 --rMax=4    superCombination.2016.txt.pruned.txt.workspace.root     -t  -1  --expectSignal 1         >   result.data.MC.MaxLikelihoodFit.ICHEP2016.combined.txt
+
+combine -M ProfileLikelihood --significance     superCombination.2016.txt.pruned.txt.workspace.root                                      >   result.data.Data.Significance.ICHEP2016.combined.txt
+combine -M ProfileLikelihood --significance     superCombination.2016.txt.pruned.txt.workspace.root     -t  -1  --expectSignal 1         >   result.data.MC.Significance.ICHEP2016.combined.txt
+
+
+
+            
+            
+ 
+root -l ../higgsCombineLHScanMC.ICHEP2016.combine.pruned.txt.MultiDimFit.mH125.root  \
+        ../higgsCombineLHScanDATA.ICHEP2016.combine.pruned.txt.MultiDimFit.mH125.root  \
+            scripts/drawNLLObs.C
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            
 
 # 
 # 
