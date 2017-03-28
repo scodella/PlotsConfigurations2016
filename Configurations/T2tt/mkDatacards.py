@@ -483,9 +483,9 @@ class DatacardFactory:
     def _saveHisto(self, folderName, histoName, histoNameOut):     
        shapeName = folderName + histoName
        histo = self._fileIn.Get(shapeName)
-       print " shapeName = ", shapeName
-       print " --> ", histoNameOut
-       print " --> histo = ", histo
+       #print " shapeName = ", shapeName
+       #print " --> ", histoNameOut
+       #print " --> histo = ", histo
        histo.SetName(histoNameOut)
        self._outFile.cd()
        histo.Write()

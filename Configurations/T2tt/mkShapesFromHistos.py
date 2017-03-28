@@ -143,10 +143,10 @@ class ShapeFactory:
               
               if use_this_nuisance :
                
-                if nuisanceName != 'stat' : # 'stat' has a separate treatment, it's the MC/data statistics
+                if (nuisanceName != 'stat' and 'MT2llBin' not in nuisanceName): # 'stat' has a separate treatment, it's the MC/data statistics
                   
                   if 'type' in nuisance.keys() : # some nuisances may not have "type" ... why?
-                    print "nuisance[type] = ", nuisance ['type']
+                    print "nuisance[type] = ", nuisance ['type']," ","nuisance[name] = ", nuisance ['name']
                     if nuisance ['type'] == 'shape' :
                         if 'all' in nuisance.keys() and nuisance ['all'] == 1 : # for all samples
                             print 'what about the shapes?'
@@ -196,6 +196,70 @@ class ShapeFactory:
                                     histo.Write()
                                     fileInDo.Close()
 
+                # MT2ll bin nuisances
+                if 'MT2llBin' in nuisanceName:
+
+                    print "nuisance[type] = ", nuisance ['type']," ","nuisance[name] = ", nuisance ['name']
+                    for sampleName in self.backgrounds:
+                        if sampleName in nuisance['samples'].keys() :
+
+                            inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + '.root'
+                            fileIn = ROOT.TFile(inputFile, "READ")
+                            histoTemplate = fileIn.Get(shapeName)
+                            histoTemplate.Scale(lumi)
+                            histoTemplate = self._checkBadBins(histoTemplate)
+
+                            nBins = histoTemplate.GetNbinsX()
+                            xInitial = histoTemplate.GetBinLowEdge(1)
+                            xFinal = histoTemplate.GetBinLowEdge(nBins+1)
+                            
+                            histoBinUpName = 'histo_' + sampleName + '_' + (nuisance['name']) + "Up"
+                            histoBinUp = ROOT.TH1F(histoBinUpName, '', nBins, xInitial, xFinal)
+                            
+                            histoBinDoName = 'histo_' + sampleName + '_' + (nuisance['name']) + "Down"
+                            histoBinDo = ROOT.TH1F(histoBinDoName, '', nBins, xInitial, xFinal)
+                      
+                            for iBin in range(1, nBins+1):
+                                     
+                                yValue = histoTemplate.GetBinContent(iBin)
+
+                                if ( ("Bin4" in nuisanceName and iBin==4) or 
+                                     ("Bin5" in nuisanceName and iBin==5) or 
+                                     ("Bin6" in nuisanceName and iBin==6) or 
+                                     ("Bin7" in nuisanceName and iBin==7) ):
+
+                                    rError = float(nuisance['samples'][sampleName])
+                                    if ("Bin4" in nuisanceName and iBin==4): # Bleah: manually for the moment
+                                        rError = 0.05
+                                    if ("Bin5" in nuisanceName and iBin==5):
+                                        rError = 0.10
+                                    if ("Bin6" in nuisanceName and iBin==6):
+                                        rError = 0.20
+                                    if ("Bin7" in nuisanceName and iBin==7):
+                                        rError = 0.30
+                                    yError = yValue * rError
+
+                                    histoBinUp.SetBinContent(iBin, yValue + yError)
+                                    histoBinUp.SetBinError  (iBin, yError)
+                                    histoBinDo.SetBinContent(iBin, yValue - yError)
+                                    histoBinDo.SetBinError  (iBin, yError)
+
+                                else:
+
+                                    yError = histoTemplate.GetBinError(iBin)
+                          
+                                    histoBinUp.SetBinContent(iBin, yValue)
+                                    histoBinUp.SetBinError  (iBin, yError)
+                                    histoBinDo.SetBinContent(iBin, yValue)
+                                    histoBinDo.SetBinError  (iBin, yError)
+                                  
+                            self._outFile.cd(cutName + "/" + variableName)
+                            histoBinUp = self._checkBadBins(histoBinUp)
+                            histoBinUp.Write()
+                            histoBinDo = self._checkBadBins(histoBinDo)
+                            histoBinDo.Write()
+
+                            fileIn.Close()
                                       
                 # stat nuisances  
                 if nuisanceName == 'stat' : # 'stat' has a separate treatment, it's the MC/data statistics
@@ -207,7 +271,7 @@ class ShapeFactory:
                       fileIn = ROOT.TFile(inputFile, "READ")
                       histoTemplate = fileIn.Get(shapeName)
                       histoTemplate.Scale(lumi)
-                      histo = self._checkBadBins(histoTemplate)
+                      histoTemplate = self._checkBadBins(histoTemplate)
 
                       nBins = histoTemplate.GetNbinsX()
                       xInitial = histoTemplate.GetBinLowEdge(1)
@@ -220,7 +284,7 @@ class ShapeFactory:
                       histoDo = ROOT.TH1F(histoDoName, '', nBins, xInitial, xFinal)
                       
                       for iBin in range(1, nBins+1):
-
+                          
                           yValue = histoTemplate.GetBinContent(iBin)
                           yError = histoTemplate.GetBinError(iBin)
                           
@@ -291,6 +355,15 @@ class ShapeFactory:
                           yValue = histoTemplate.GetBinContent(iBin)
                           yError = histoTemplate.GetBinError(iBin)
                           
+                          #if (sampleName=="06_WW" or sampleName=="04_TTTo2L2Nu"):
+                           #   print sampleName,"stattttttttt"
+                            #  if iBin == 5:
+                             #     yError = yValue * 1.05
+                              #elif iBin == 6:
+                             #     yError = yValue * 1.10
+                              #elif iBin == 7:
+                             #     yError = yValue * 1.20
+                          
                           histoUp.SetBinContent(iBin, yValue + yError)
                           histoUp.SetBinError  (iBin, yError)
                           histoDo.SetBinContent(iBin, yValue - yError)
@@ -343,9 +416,9 @@ class ShapeFactory:
             yValue = histo.GetBinContent(iBin)
             if yValue <= 0. :
                 histo.SetBinContent(iBin, 0.001)
-        #histoIntegralCorrected = histo.Integral()
-        #if (histoIntegralCorrected!=histoIntegral) :
-        #    histo.Scale(histoIntegralCorrected/histoIntegral)
+        histoIntegralCorrected = histo.Integral()
+        if (histoIntegralCorrected!=histoIntegral) :
+            histo.Scale(histoIntegralCorrected/histoIntegral)
         return histo
 
 if __name__ == '__main__':

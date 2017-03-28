@@ -5,10 +5,10 @@ tag = 'mytest'
 outputDir = 'Shapes'
 outputDirDatacard = 'tempDatacards'
  
-inputDir = '/afs/cern.ch/user/s/scodella/work/Stop/CodeDevelopment/CMSSW_8_0_21/src/AnalysisCMS/minitreesB/rootfiles/'
+inputDir = '/eos/cms/store/user/scodella/Stop/MiniTrees/Feb2017_minitrees_blind/rootfiles/'
 
 # luminosity to normalize to
-lumi = 36.
+lumi = 35.867
 
 # set of mc samples: 0j1j, vbf
 #mcset = 'general.py'
