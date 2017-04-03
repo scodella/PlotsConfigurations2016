@@ -410,15 +410,15 @@ class ShapeFactory:
 
     def _checkBadBins(self, histo):
 
-        #histoIntegral = histo.Integral()
+        histoIntegral = histo.Integral()
         nBins = histo.GetNbinsX()
         for iBin in range(1, nBins+1):
             yValue = histo.GetBinContent(iBin)
             if yValue <= 0. :
                 histo.SetBinContent(iBin, 0.001)
         histoIntegralCorrected = histo.Integral()
-        if (histoIntegralCorrected!=histoIntegral) :
-            histo.Scale(histoIntegralCorrected/histoIntegral)
+        if (histoIntegralCorrected!=histoIntegral and histoIntegralCorrected!=0) :
+            histo.Scale(histoIntegral/histoIntegralCorrected)
         return histo
 
 if __name__ == '__main__':

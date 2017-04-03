@@ -5,7 +5,8 @@ tag = 'mytest'
 outputDir = 'Shapes'
 outputDirDatacard = 'tempDatacards'
  
-inputDir = '/eos/cms/store/user/scodella/Stop/MiniTrees/Feb2017_minitrees_blind/rootfiles/'
+#inputDir = '/eos/cms/store/user/scodella/Stop/MiniTrees/Feb2017_minitrees_blind/rootfiles/'
+inputDir = '/afs/cern.ch/work/s/scodella/Stop/CodeDevelopment/CMSSW_8_0_26_patch1/src/AnalysisCMS/minitrees/rootfiles/'
 
 # luminosity to normalize to
 lumi = 35.867
