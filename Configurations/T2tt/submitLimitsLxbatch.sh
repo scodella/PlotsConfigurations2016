@@ -1,9 +1,15 @@
 #!/bin/bash
 
-cat MassPointList.txt | while read line
+export WORKDIRECTORY=$PWD
+
+mkdir -p jobs
+
+cd jobs/
+
+cat $WORKDIRECTORY/MassPointList.txt | while read line
 do
    if [[ -n $line && "$line" != *"#"* ]]
    then
-       bsub -q cmscaf1nd -o $PWD/jobs $PWD/runPointLimitLxbatch.sh $line $PWD
+       bsub -q cmscaf1nd -o $WORKDIRECTORY/jobs $WORKDIRECTORY/runPointLimitLxbatch.sh $line $WORKDIRECTORY
    fi
 done
