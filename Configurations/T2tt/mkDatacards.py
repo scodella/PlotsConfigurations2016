@@ -315,8 +315,7 @@ class DatacardFactory:
                 if nuisanceName == 'stat' : # 'stat' has a separate treatment, it's the MC/data statistics
                 
                   for sampleName in self.signals:
-                    if sampleName in nuisance['samples'].keys() :
-                      print 'now stat',sampleName  
+                    if sampleName in nuisance['samples'].keys() :  
                       if nuisance['samples'][sampleName]['typeStat'] == 'uni' : # unified approach
                        
                         card.write(( 'CMS_' + tagNameToAppearInDatacard + "_" + sampleName + "_stat" ).ljust(80-20))

@@ -1,5 +1,5 @@
 
-structure['T2tt']  = {  
+structure['T2tt_isr']  = {  
     'isSignal' : 1,
     'isData'   : 0 
     }

@@ -4,7 +4,7 @@ nuisances['lumiMoriond17']  = {
     'name'  : 'lumiMoriond17', 
     'samples'  : {
         #https://twiki.cern.ch/twiki/bin/view/CMS/TWikiLUM#CurRec
-        'T2tt'                             : '1.026',
+        'T2tt_isr'                             : '1.026',
         '03_VZ'                            : '1.026',
         '04_TTTo2L2Nu'                     : '1.026',
         '06_WW'                            : '1.026',
@@ -86,7 +86,7 @@ nuisances['normTW']  = {
 nuisances['Reco']  = {
     'name'  : 'Reco', 
     'samples'  : {
-        'T2tt'                             : '1.',
+        'T2tt_isr'                             : '1.',
         '03_VZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
@@ -102,7 +102,7 @@ nuisances['Reco']  = {
 nuisances['Idiso']  = {
     'name'  : 'Idiso', 
     'samples'  : {
-        'T2tt'                             : '1.',
+        'T2tt_isr'                             : '1.',
         '03_VZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
@@ -118,7 +118,7 @@ nuisances['Idiso']  = {
 nuisances['Fastsim']  = {
     'name'  : 'Fastsim', 
     'samples'  : {
-        'T2tt'                             : '1.',
+        'T2tt_isr'                             : '1.',
         },
     'type'  : 'shape',
     }
@@ -126,7 +126,7 @@ nuisances['Fastsim']  = {
 #nuisances['Trigger']  = {
 #    'name'  : 'Trigger', 
 #    'samples'  : {
-#        'T2tt'                             : '1.',
+#        'T2tt_isr'                             : '1.',
 #        '03_VZ'                            : '1.',
 #        '04_TTTo2L2Nu'                     : '1.',
 #        '06_WW'                            : '1.',
@@ -142,7 +142,7 @@ nuisances['Fastsim']  = {
 nuisances['Trigger']  = {
     'name'  : 'Trigger', 
     'samples'  : {
-        'T2tt'                             : '1.02',
+        'T2tt_isr'                             : '1.02',
         '03_VZ'                            : '1.02',
         '04_TTTo2L2Nu'                     : '1.02',
         '06_WW'                            : '1.02',
@@ -158,7 +158,7 @@ nuisances['Trigger']  = {
 nuisances['Btag']  = {
     'name'  : 'Btag', 
     'samples'  : {
-        'T2tt'                             : '1.',
+        'T2tt_isr'                             : '1.',
         '03_VZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
@@ -174,7 +174,31 @@ nuisances['Btag']  = {
 nuisances['BtagFS']  = {
     'name'  : 'BtagFS', 
     'samples'  : {
-        'T2tt'                             : '1.',
+        'T2tt_isr'                             : '1.',
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['Pileup']  = {
+    'name'  : 'Pileup', 
+    'samples'  : {
+        'T2tt_isr'                             : '1.',
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['Metfastsim']  = {
+    'name'  : 'Metfastsim', 
+    'samples'  : {
+        'T2tt_isr'                             : '1.',
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['Isrnjet']  = {
+    'name'  : 'Isrnjet', 
+    'samples'  : {
+        'T2tt_isr'                             : '1.',
         },
     'type'  : 'shape',
     }
@@ -182,7 +206,7 @@ nuisances['BtagFS']  = {
 nuisances['JES']  = {
     'name'  : 'JES', 
     'samples'  : {
-        'T2tt'                             : '1.',
+        'T2tt_isr'                             : '1.',
         '03_VZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
@@ -201,7 +225,7 @@ nuisances['stat']  = {
     # apply to the following samples: name of samples here must match keys in samples.py
     'samples'  : {
         
-        'T2tt'                           : {
+        'T2tt_isr'                           : {
             'typeStat' : 'bbb',
             },
         

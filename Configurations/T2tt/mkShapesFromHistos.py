@@ -40,7 +40,7 @@ class ShapeFactory:
     # _____________________________________________________________________________
     # 
     # _____________________________________________________________________________
-    def makeShapesFromHistos( self, inputDir, outputDir, outputFileName, analysisName, lumi, variables, cuts, samples, structureFile, nuisances, signalPoint):
+    def makeShapesFromHistos( self, inputDir, outputDir, outputFileName, analysisName, lumi, variables, cuts, samples, structureFile, nuisances, signalPoint, fastsimMet):
     
         print "=============================="
         print "==== makeShapesFromHistos ===="
@@ -52,6 +52,8 @@ class ShapeFactory:
 
         self._inputDir  = inputDir
         self._outputDir = outputDir
+
+        self._fastsimMet = fastsimMet
 
         #self._fileIn = ROOT.TFile(inputFile, "READ")
         
@@ -82,6 +84,7 @@ class ShapeFactory:
             cutNameSplit = cutName.split('_')
             print analysisName + "/" + cutNameSplit[0] + '_' + cutNameSplit[1] + '/h_' + variableName + '_' + cutNameSplit[2]
             shapeName = analysisName + "/02_" + cutNameSplit[0] + '_' + cutNameSplit[1] + '/h_' + variableName + '_' + cutNameSplit[2]
+            shapeNameGen = analysisName + "/02_" + cutNameSplit[0] + '_' + cutNameSplit[1] + '/h_' + variableName + 'gen_' + cutNameSplit[2]
 
             print "  variableName = ", variableName
             tagNameToAppearInDatacard = cutName
@@ -90,8 +93,8 @@ class ShapeFactory:
             for sampleName in self.signals:
               inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + signalPoint + '.root'
               fileIn = ROOT.TFile(inputFile, "READ")
-              print shapeName
-              histo = fileIn.Get(shapeName)
+              #histo = fileIn.Get(shapeName)
+              histo = self._getFastSimShape(fileIn, shapeName, shapeNameGen)
               histo.SetName('histo_' + sampleName)
               histo.Scale(lumi)
               histo = self._checkBadBins(histo)
@@ -143,7 +146,7 @@ class ShapeFactory:
               
               if use_this_nuisance :
                
-                if (nuisanceName != 'stat' and 'MT2llBin' not in nuisanceName): # 'stat' has a separate treatment, it's the MC/data statistics
+                if (nuisanceName != 'stat' and nuisanceName != 'Metfastsim' and 'MT2llBin' not in nuisanceName): # 'stat' has a separate treatment, it's the MC/data statistics
                   
                   if 'type' in nuisance.keys() : # some nuisances may not have "type" ... why?
                     print "nuisance[type] = ", nuisance ['type']," ","nuisance[name] = ", nuisance ['name']
@@ -157,7 +160,8 @@ class ShapeFactory:
                                     # save the nuisance histograms in the root file
                                     inputFile = inputDir + '/' + nuisance['name'] + 'up/' + analysisName + '/' + sampleName + signalPoint + '.root'
                                     fileInUp = ROOT.TFile(inputFile, "READ")
-                                    histo = fileInUp.Get(shapeName)
+                                    #histo = fileInUp.Get(shapeName)
+                                    histo = self._getFastSimShape(fileInUp, shapeName, shapeNameGen)
                                     histo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Up")
                                     histo.Scale(lumi)
                                     histo = self._checkBadBins(histo)
@@ -166,7 +170,8 @@ class ShapeFactory:
                                     fileInUp.Close()
                                     inputFile = inputDir + '/' + nuisance['name'] + 'do/' + analysisName + '/' + sampleName + signalPoint + '.root'
                                     fileInDo = ROOT.TFile(inputFile, "READ")
-                                    histo = fileInDo.Get(shapeName)
+                                    #histo = fileInDo.Get(shapeName)
+                                    histo = self._getFastSimShape(fileInDo, shapeName, shapeNameGen)
                                     histo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Down")
                                     histo.Scale(lumi)
                                     histo = self._checkBadBins(histo)
@@ -260,7 +265,36 @@ class ShapeFactory:
                             histoBinDo.Write()
 
                             fileIn.Close()
-                                      
+
+                # Metfastsim https://twiki.cern.ch/twiki/bin/viewauth/CMS/SUSRecommendationsMoriond17#Special_treatment_of_MET_uncerta
+                if nuisanceName == 'Metfastsim' :
+
+                    print "nuisance[type] = ", nuisance ['type']," ","nuisance[name] = ", nuisance ['name']
+                    for sampleName in self.signals:
+                        if sampleName in nuisance['samples'].keys() :
+                   
+                            inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + signalPoint + '.root'
+                            fileIn = ROOT.TFile(inputFile, "READ")
+                            shapeNameUp = shapeName
+                            if self._fastsimMet=="gen": 
+                                shapeNameUp = shapeNameGen
+                            shapeNameDo = shapeNameGen
+                            if self._fastsimMet=="reco":
+                                shapeNameDo = shapeName
+                            histoUp = fileIn.Get(shapeNameUp)
+                            histoUp.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Up")
+                            histoUp.Scale(lumi)
+                            histoUp = self._checkBadBins(histoUp)
+                            histoDo = fileIn.Get(shapeNameDo)
+                            histoDo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Down")
+                            histoDo.Scale(lumi)
+                            histoDo = self._checkBadBins(histoDo)
+                            self._outFile.cd(cutName + "/" + variableName)
+                            histoUp.Write()
+                            histoDo.Write()
+                            fileIn.Close()
+                            
+
                 # stat nuisances  
                 if nuisanceName == 'stat' : # 'stat' has a separate treatment, it's the MC/data statistics
                 
@@ -269,7 +303,8 @@ class ShapeFactory:
 
                       inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + signalPoint + '.root'
                       fileIn = ROOT.TFile(inputFile, "READ")
-                      histoTemplate = fileIn.Get(shapeName)
+                      #histoTemplate = fileIn.Get(shapeName)
+                      histoTemplate = self._getFastSimShape(fileIn, shapeName, shapeNameGen)
                       histoTemplate.Scale(lumi)
                       histoTemplate = self._checkBadBins(histoTemplate)
 
@@ -410,16 +445,46 @@ class ShapeFactory:
 
     def _checkBadBins(self, histo):
 
-        #histoIntegral = histo.Integral()
+        histoIntegral = histo.Integral()
         nBins = histo.GetNbinsX()
         for iBin in range(1, nBins+1):
             yValue = histo.GetBinContent(iBin)
             if yValue <= 0. :
                 histo.SetBinContent(iBin, 0.001)
-        #histoIntegralCorrected = histo.Integral()
-        #if (histoIntegralCorrected!=histoIntegral and histoIntegralCorrected!=0) :
-        #    histo.Scale(histoIntegral/histoIntegralCorrected)
+        histoIntegralCorrected = histo.Integral()
+        if (histoIntegralCorrected!=0 and histoIntegral > 0) :
+            histo.Scale(histoIntegral/histoIntegralCorrected)
         return histo
+
+    def _getFastSimShape(self, fileIn, shapeName, shapeNameGen):
+
+        historeco = fileIn.Get(shapeName)
+
+        if self._fastsimMet=="reco" :
+            return historeco
+            
+        histogen  = fileIn.Get(shapeNameGen)
+        
+        if self._fastsimMet=="gen" :
+            return histogen
+
+        nBins = historeco.GetNbinsX()
+        xInitial = historeco.GetBinLowEdge(1)
+        xFinal = historeco.GetBinLowEdge(nBins+1)
+        
+        histo = ROOT.TH1F('histo', '', nBins, xInitial, xFinal)
+
+        for iBin in range(1, nBins+1):
+
+            yValue = (historeco.GetBinContent(iBin) + histogen.GetBinContent(iBin))/2.
+            yError = (historeco.GetBinError(iBin)   + histogen.GetBinError(iBin))/2.
+            
+            histo.SetBinContent(iBin, yValue)
+            histo.SetBinError(iBin, yError)
+
+        return histo
+
+
 
 if __name__ == '__main__':
     print 'SHAPE MAKER'
@@ -436,6 +501,7 @@ if __name__ == '__main__':
     parser.add_option('--structureFile'      , dest='structureFile'     , help='file with datacard configurations'          , default=None )
     parser.add_option('--nuisancesFile'      , dest='nuisancesFile'     , help='file with nuisances configurations'         , default=None )
     parser.add_option('--signalPoint'        , dest='signalPoint'       , help='signal name (mass point)'                   , default='')
+    parser.add_option('--fastsimMet'         , dest='fastsimMet'        , help='treatment of Met in FastSim'                , default='mix')
 
     # read default parsing options as well
     hwwtools.addOptions(parser)
@@ -508,7 +574,7 @@ if __name__ == '__main__':
       handle.close()
     
 
-    factory.makeShapesFromHistos( opt.inputDir ,opt.outputDir, opt.outputFileName, opt.analysisName, opt.lumi, variables, cuts, samples, structure, nuisances, opt.signalPoint)
+    factory.makeShapesFromHistos( opt.inputDir ,opt.outputDir, opt.outputFileName, opt.analysisName, opt.lumi, variables, cuts, samples, structure, nuisances, opt.signalPoint, opt.fastsimMet)
     
         
         

@@ -16,7 +16,7 @@
 #                  }
 
 
-samples['T2tt'] = {  'name': ['T2tt'],    
+samples['T2tt_isr'] = {  'name': ['T2tt_isr'],    
                                         'weight' : 'baseW', 
                                         'weights': ['1'] 
                                         }
