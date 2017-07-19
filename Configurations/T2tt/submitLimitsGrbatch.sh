@@ -1,9 +1,11 @@
 #!/bin/bash
 
-cat MassPointList.txt | while read line
+export WORKDIRECTORY=$PWD
+
+cat MassPointList${1}.txt | while read line
 do
    if [[ -n $line && "$line" != *"#"* ]]
    then
-       qsub ./runPointLimitGrbatch.sh $line
+       qsub ./runPointLimitGrbatch.sh $line $WORKDIRECTORY $2
    fi
 done

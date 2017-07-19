@@ -16,25 +16,20 @@
 #                  }
 
 
-samples['T2tt_isr'] = {  'name': ['T2tt_isr'],    
+samples['T'] = {  'name': ['T'],    
                                         'weight' : 'baseW', 
                                         'weights': ['1'] 
                                         }
 
-#samples['01_PseudoDataTT'] = {  'name': ['01_PseudoDataTT.root'],    
+#samples['01_PseudoData'] = {  'name': ['01_PseudoData.root'],    
 #                             'weight' : 'baseW', 
 #                             'weights': ['1'] 
 #                             }
 
-samples['01_PseudoDataSmeared'] = {  'name': ['01_PseudoDataSmeared.root'],    
+samples['01_Data'] = {  'name': ['01_Data.root'],    
                              'weight' : 'baseW', 
                              'weights': ['1'] 
                              }
-
-#samples['01_Data'] = {  'name': ['01_Data.root'],    
-#                             'weight' : 'baseW', 
-#                             'weights': ['1'] 
-#                             }
 
 samples['04_TTTo2L2Nu'] = {  'name': ['04_TTTo2L2Nu.root'],    
                              'weight' : 'baseW', 
@@ -51,7 +46,7 @@ samples['06_WW'] = {  'name': ['06_WW.root'],
                              'weights': ['1'] 
                              }
 
-samples['07_ZJets'] = {  'name': ['07_Zjets.root'],    
+samples['07_ZJetsHT'] = {  'name': ['07_ZjetsHT.root'],    
                              'weight' : 'baseW', 
                              'weights': ['1'] 
                              }

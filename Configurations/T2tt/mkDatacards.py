@@ -235,7 +235,7 @@ class DatacardFactory:
                           else :
                             card.write(('-').ljust(columndef))
                              
-                    elif nuisance ['type'] == 'shape' :
+                    elif (nuisance ['type'] == 'shape' or nuisance ['type'] == 'shapeN') :
                       card.write(("CMS_" + (nuisance['name'])).ljust(80-20))
                       card.write((nuisance ['type']).ljust(20))
                       if 'all' in nuisance.keys() and nuisance ['all'] == 1 : # for all samples

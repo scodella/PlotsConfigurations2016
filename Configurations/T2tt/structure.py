@@ -1,18 +1,18 @@
 
-structure['T2tt_isr']  = {  
+structure['T']  = {  
     'isSignal' : 1,
     'isData'   : 0 
     }
 
-structure['01_PseudoDataSmeared']  = {  
+#structure['01_PseudoData']  = {  
+#    'isSignal' : 0,
+#    'isData'   : 1 
+#    }
+
+structure['01_Data']  = {  
     'isSignal' : 0,
     'isData'   : 1 
     }
-
- #structure['01_PseudoDataTT']  = {  
- #    'isSignal' : 0,
- #    'isData'   : 1 
- #    }
 
 structure['04_TTTo2L2Nu']  = {  
     'isSignal' : 0,
@@ -29,7 +29,7 @@ structure['06_WW']  = {
     'isData'   : 0 
     }
 
-structure['07_ZJets']  = {  
+structure['07_ZJetsHT']  = {  
     'isSignal' : 0,
     'isData'   : 0 
     }

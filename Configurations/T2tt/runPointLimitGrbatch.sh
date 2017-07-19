@@ -12,8 +12,8 @@ cd /gpfs/csic_users/sluca/Stop/CMSSW_7_4_7/src/
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 eval `scramv1 runtime -sh`
 
-cd /gpfs/csic_users/sluca/Stop/CMSSW_8_0_26_patch1/src/PlotsConfigurations/Configurations/T2tt
+cd $2
 
-./runPointLimit.sh $1
+./runPointLimit.sh $1 $3
 
 

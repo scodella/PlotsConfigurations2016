@@ -84,7 +84,7 @@ class ShapeFactory:
             cutNameSplit = cutName.split('_')
             print analysisName + "/" + cutNameSplit[0] + '_' + cutNameSplit[1] + '/h_' + variableName + '_' + cutNameSplit[2]
             shapeName = analysisName + "/02_" + cutNameSplit[0] + '_' + cutNameSplit[1] + '/h_' + variableName + '_' + cutNameSplit[2]
-            shapeNameGen = analysisName + "/02_" + cutNameSplit[0] + '_' + cutNameSplit[1] + '/h_' + variableName + 'gen_' + cutNameSplit[2]
+            shapeNameGen = analysisName + "/02_" + cutNameSplit[0] + 'gen_' + cutNameSplit[1] + '/h_' + variableName + 'gen_' + cutNameSplit[2]
 
             print "  variableName = ", variableName
             tagNameToAppearInDatacard = cutName
@@ -109,6 +109,10 @@ class ShapeFactory:
               histo = fileIn.Get(shapeName)
               histo.SetName('histo_' + sampleName)
               histo.Scale(lumi)
+              if (sampleName == "10_TTZ") :
+                  histo.Scale(1.47)
+              if (sampleName == "07_ZJetsHT" or sampleName == "03_VZ") :
+                  histo.Scale(1.40)
               histo = self._checkBadBins(histo)
               self._outFile.cd(cutName + "/" + variableName)
               histo.Write()
@@ -150,7 +154,7 @@ class ShapeFactory:
                   
                   if 'type' in nuisance.keys() : # some nuisances may not have "type" ... why?
                     print "nuisance[type] = ", nuisance ['type']," ","nuisance[name] = ", nuisance ['name']
-                    if nuisance ['type'] == 'shape' :
+                    if (nuisance ['type'] == 'shape' or nuisance ['type'] == 'shapeN') :
                         if 'all' in nuisance.keys() and nuisance ['all'] == 1 : # for all samples
                             print 'what about the shapes?'
                         else :
@@ -187,6 +191,10 @@ class ShapeFactory:
                                     histo = fileInUp.Get(shapeName)
                                     histo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Up")
                                     histo.Scale(lumi)
+                                    if (sampleName == "10_TTZ") :
+                                        histo.Scale(1.47)
+                                    if (sampleName == "07_ZJetsHT" or sampleName == "03_VZ") :
+                                        histo.Scale(1.40)
                                     histo = self._checkBadBins(histo)
                                     self._outFile.cd(cutName + "/" + variableName)
                                     histo.Write()
@@ -196,6 +204,10 @@ class ShapeFactory:
                                     histo = fileInDo.Get(shapeName)
                                     histo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Down")
                                     histo.Scale(lumi)
+                                    if (sampleName == "10_TTZ") :
+                                        histo.Scale(1.47)
+                                    if (sampleName == "07_ZJetsHT" or sampleName == "03_VZ") :
+                                        histo.Scale(1.40)
                                     histo = self._checkBadBins(histo)
                                     self._outFile.cd(cutName + "/" + variableName)
                                     histo.Write()
@@ -373,6 +385,10 @@ class ShapeFactory:
                       fileIn = ROOT.TFile(inputFile, "READ")
                       histoTemplate = fileIn.Get(shapeName)
                       histoTemplate.Scale(lumi)
+                      if (sampleName == "10_TTZ") :
+                          histoTemplate.Scale(1.47)
+                      if (sampleName == "07_ZJetsHT" or sampleName == "03_VZ") :
+                          histoTemplate.Scale(1.40)
                       histo = self._checkBadBins(histoTemplate)
 
                       nBins = histoTemplate.GetNbinsX()
@@ -462,7 +478,7 @@ class ShapeFactory:
 
         if self._fastsimMet=="reco" :
             return historeco
-            
+        
         histogen  = fileIn.Get(shapeNameGen)
         
         if self._fastsimMet=="gen" :
@@ -481,7 +497,7 @@ class ShapeFactory:
             
             histo.SetBinContent(iBin, yValue)
             histo.SetBinError(iBin, yError)
-
+            
         return histo
 
 

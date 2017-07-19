@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cat MassPointList.txt | while read line
+cat MassPointList${1}.txt | while read line
 do
   if [[ -n $line && "$line" != *"#"* ]]
   then
-    ./createPointDatacards.sh $line
+    ./createPointDatacards.sh $line $2
   fi
 done

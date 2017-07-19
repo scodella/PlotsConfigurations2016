@@ -210,7 +210,7 @@ if __name__ == '__main__':
     parser.add_option('--sigset'             , dest='sigset'            , help='Signal samples [SM]'                        , default='SM')
     parser.add_option('--inputDir'           , dest='inputDir'          , help='input directory'                            , default='./')
     parser.add_option('--outputDir'          , dest='outputDir'         , help='output directory'                           , default='./')
-    parser.add_option('--outputFileName'     , dest='outputFileName'    , help='output file name'                           , default='01_PseudoDataSmeared')
+    parser.add_option('--outputFileName'     , dest='outputFileName'    , help='output file name'                           , default='01_PseudoData')
     parser.add_option('--analysisName'       , dest='analysisName'      , help='analysis name'                              , default='Stop')
     parser.add_option('--structureFile'      , dest='structureFile'     , help='file with datacard configurations'          , default=None )
     parser.add_option('--nuisancesFile'      , dest='nuisancesFile'     , help='file with nuisances configurations'         , default=None )
