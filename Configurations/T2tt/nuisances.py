@@ -563,12 +563,15 @@ nuisances['MT2llBin4TopSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -583,12 +586,15 @@ nuisances['MT2llBin4TopSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -603,12 +609,15 @@ nuisances['MT2llBin4TopSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -623,12 +632,15 @@ nuisances['MT2llBin5TopSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -643,12 +655,15 @@ nuisances['MT2llBin6TopSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -663,12 +678,15 @@ nuisances['MT2llBin7TopSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -683,12 +701,15 @@ nuisances['MT2llBin5TopSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -703,12 +724,15 @@ nuisances['MT2llBin6TopSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -723,12 +747,15 @@ nuisances['MT2llBin7TopSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -743,12 +770,15 @@ nuisances['MT2llBin5TopSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -763,12 +793,15 @@ nuisances['MT2llBin6TopSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -783,12 +816,15 @@ nuisances['MT2llBin7TopSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -802,12 +838,15 @@ nuisances['MT2llBin4WWSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -821,12 +860,15 @@ nuisances['MT2llBin4WWSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -840,12 +882,15 @@ nuisances['MT2llBin4WWSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -859,12 +904,15 @@ nuisances['MT2llBin5WWSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -878,12 +926,15 @@ nuisances['MT2llBin6WWSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -897,12 +948,15 @@ nuisances['MT2llBin7WWSR1']  = {
         'SR1_Tag_ee' : '1.00',
         'SR1_Tag_em' : '1.00',
         'SR1_Tag_mm' : '1.00',
+        'SR1_Tag_ll' : '1.00',
         'SR1_NoTag_ee' : '1.00',
         'SR1_NoTag_em' : '1.00',
         'SR1_NoTag_mm' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
         'SR1_NoJet_ee' : '1.00',
         'SR1_NoJet_em' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -916,12 +970,15 @@ nuisances['MT2llBin5WWSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -935,12 +992,15 @@ nuisances['MT2llBin6WWSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -954,12 +1014,15 @@ nuisances['MT2llBin7WWSR2']  = {
         'SR2_Tag_ee' : '1.00',
         'SR2_Tag_em' : '1.00',
         'SR2_Tag_mm' : '1.00',
+        'SR2_Tag_ll' : '1.00',
         'SR2_NoTag_ee' : '1.00',
         'SR2_NoTag_em' : '1.00',
         'SR2_NoTag_mm' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
         'SR2_NoJet_ee' : '1.00',
         'SR2_NoJet_em' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -973,12 +1036,15 @@ nuisances['MT2llBin5WWSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -992,12 +1058,15 @@ nuisances['MT2llBin6WWSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -1011,12 +1080,15 @@ nuisances['MT2llBin7WWSR3']  = {
         'SR3_Tag_ee' : '1.00',
         'SR3_Tag_em' : '1.00',
         'SR3_Tag_mm' : '1.00',
+        'SR3_Tag_ll' : '1.00',
         'SR3_NoTag_ee' : '1.00',
         'SR3_NoTag_em' : '1.00',
         'SR3_NoTag_mm' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
         'SR3_NoJet_ee' : '1.00',
         'SR3_NoJet_em' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     'type'  : 'shape',
     }
@@ -1133,6 +1205,20 @@ nuisances['Topnorm_SR1_mm']  = {
         },
     }
 
+nuisances['Topnorm_SR1_ll']  = {
+    'name'  : 'Topnorm_SR1_ll',
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        #'05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR1_Tag_ll' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
+        },
+    }
+
 nuisances['Topnorm_SR2_em']  = {
     'name'  : 'Topnorm_SR2_em',
     'samples'  : {
@@ -1172,6 +1258,20 @@ nuisances['Topnorm_SR2_mm']  = {
         'SR2_Tag_mm' : '1.00',
         'SR2_NoTag_mm' : '1.00',
         'SR2_NoJet_mm' : '1.00',
+        },
+    }
+
+nuisances['Topnorm_SR2_ll']  = {
+    'name'  : 'Topnorm_SR2_ll',
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        #'05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR2_Tag_ll' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
         },
     }
 
@@ -1217,6 +1317,20 @@ nuisances['Topnorm_SR3_mm']  = {
         },
     }
 
+nuisances['Topnorm_SR3_ll']  = {
+    'name'  : 'Topnorm_SR3_ll',
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        #'05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR3_Tag_ll' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
+        },
+    }
+
 nuisances['Topnorm_VR1_em']  = {
     'name'  : 'Topnorm_VR1_em',
     'samples'  : {
@@ -1256,6 +1370,20 @@ nuisances['Topnorm_VR1_mm']  = {
         'VR1_Tag_mm' : '1.00',
         'VR1_NoTag_mm' : '1.00',
         'VR1_NoJet_mm' : '1.00',
+        },
+    }
+
+nuisances['Topnorm_VR1_ll']  = {
+    'name'  : 'Topnorm_VR1_ll',
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        #'05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'VR1_Tag_ll' : '1.00',
+        'VR1_NoTag_ll' : '1.00',
+        'VR1_NoJet_ll' : '1.00',
         },
     }
 
@@ -1303,6 +1431,20 @@ nuisances['tWnorm_SR1_mm']  = {
         },
     }
 
+nuisances['tWnorm_SR1_ll']  = {
+    'name'  : 'Topnorm_SR1_ll',
+    'samples'  : {
+        #'04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR1_Tag_ll' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
+        },
+    }
+
 nuisances['tWnorm_SR2_em']  = {
     'name'  : 'Topnorm_SR2_em',
     'samples'  : {
@@ -1345,6 +1487,20 @@ nuisances['tWnorm_SR2_mm']  = {
         },
     }
 
+nuisances['tWnorm_SR2_ll']  = {
+    'name'  : 'Topnorm_SR2_ll',
+    'samples'  : {
+        #'04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR2_Tag_ll' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
+        },
+    }
+
 nuisances['tWnorm_SR3_em']  = {
     'name'  : 'Topnorm_SR3_em',
     'samples'  : {
@@ -1384,6 +1540,20 @@ nuisances['tWnorm_SR3_mm']  = {
         'SR3_Tag_mm' : '1.00',
         'SR3_NoTag_mm' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        },
+    }
+
+nuisances['tWnorm_SR3_ll']  = {
+    'name'  : 'Topnorm_SR3_ll',
+    'samples'  : {
+        #'04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR3_Tag_ll' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     }
 
@@ -1430,6 +1600,20 @@ nuisances['tWnorm_VR1_mm']  = {
         },
     }
 
+nuisances['tWnorm_VR1_ll']  = {
+    'name'  : 'Topnorm_VR1_ll',
+    'samples'  : {
+        #'04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'VR1_Tag_ll' : '1.00',
+        'VR1_NoTag_ll' : '1.00',
+        'VR1_NoJet_ll' : '1.00',
+        },
+    }
+
 # rateParam WW
 
 nuisances['WWnorm_SR1_em']  = {
@@ -1468,6 +1652,19 @@ nuisances['WWnorm_SR1_mm']  = {
         'SR1_Tag_mm' : '1.00',
         'SR1_NoTag_mm' : '1.00',
         'SR1_NoJet_mm' : '1.00',
+        },
+    }
+
+nuisances['WWnorm_SR1_ll']  = {
+    'name'  : 'WWnorm_SR1_ll',
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR1_Tag_ll' : '1.00',
+        'SR1_NoTag_ll' : '1.00',
+        'SR1_NoJet_ll' : '1.00',
         },
     }
 
@@ -1510,6 +1707,19 @@ nuisances['WWnorm_SR2_mm']  = {
         },
     }
 
+nuisances['WWnorm_SR2_ll']  = {
+    'name'  : 'WWnorm_SR2_ll',
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR2_Tag_ll' : '1.00',
+        'SR2_NoTag_ll' : '1.00',
+        'SR2_NoJet_ll' : '1.00',
+        },
+    }
+
 nuisances['WWnorm_SR3_em']  = {
     'name'  : 'WWnorm_SR3_em',
     'samples'  : {
@@ -1546,6 +1756,19 @@ nuisances['WWnorm_SR3_mm']  = {
         'SR3_Tag_mm' : '1.00',
         'SR3_NoTag_mm' : '1.00',
         'SR3_NoJet_mm' : '1.00',
+        },
+    }
+
+nuisances['WWnorm_SR3_ll']  = {
+    'name'  : 'WWnorm_SR3_ll',
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        'SR3_Tag_ll' : '1.00',
+        'SR3_NoTag_ll' : '1.00',
+        'SR3_NoJet_ll' : '1.00',
         },
     }
 
@@ -1587,3 +1810,127 @@ nuisances['WWnorm_VR1_mm']  = {
         'VR1_NoJet_mm' : '1.00',
         },
     }
+
+nuisances['WWnorm_VR1_ll']  = {
+    'name'  : 'WWnorm_SR1_ll',
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'type'  : 'rateParam',
+    'cuts'  : {
+        #'VR1_Tag_ll' : '1.00',
+        'VR1_NoTag_ll' : '1.00',
+        'VR1_NoJet_ll' : '1.00',
+        },
+    }
+
+# Specific for 3Reg
+"""
+nuisances['Nojetrate']  = {
+    'name'  : 'Nojetrate', 
+    'samples'  : {
+        'T'                             : '1.',
+        '03_VZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJetsHT'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        },
+    'type'  : 'shape',
+    'cuts'  : {
+        'SR1_NoJet_ee' : '1.00',
+        'SR1_NoJet_em' : '1.00',
+        'SR1_NoJet_mm' : '1.00',
+        'SR1_NoTag_ee' : '1.00',
+        'SR1_NoTag_em' : '1.00',
+        'SR1_NoTag_mm' : '1.00',
+        'SR2_NoJet_ee' : '1.00',
+        'SR2_NoJet_em' : '1.00',
+        'SR2_NoJet_mm' : '1.00',
+        'SR2_NoTag_ee' : '1.00',
+        'SR2_NoTag_em' : '1.00',
+        'SR2_NoTag_mm' : '1.00',
+        'SR3_NoJet_ee' : '1.00',
+        'SR3_NoJet_em' : '1.00',
+        'SR3_NoJet_mm' : '1.00',
+        'SR3_NoTag_ee' : '1.00',
+        'SR3_NoTag_em' : '1.00',
+        'SR3_NoTag_mm' : '1.00',
+        },
+    }
+
+nuisances['Nojetrate_SR1']  = {
+    'name'  : 'Nojetrate_SR1', 
+    'samples'  : {
+        'T'                             : '1.',
+        '03_VZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJetsHT'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        },
+    'type'  : 'shape',
+    'cuts'  : {
+        'SR1_NoJet_ee' : '1.00',
+        'SR1_NoJet_em' : '1.00',
+        'SR1_NoJet_mm' : '1.00',
+        'SR1_NoTag_ee' : '1.00',
+        'SR1_NoTag_em' : '1.00',
+        'SR1_NoTag_mm' : '1.00',
+        },
+    }
+
+nuisances['Nojetrate_SR2']  = {
+    'name'  : 'Nojetrate_SR2', 
+    'samples'  : {
+        'T'                             : '1.',
+        '03_VZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJetsHT'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        },
+    'type'  : 'shape',
+    'cuts'  : {
+        'SR2_NoJet_ee' : '1.00',
+        'SR2_NoJet_em' : '1.00',
+        'SR2_NoJet_mm' : '1.00',
+        'SR2_NoTag_ee' : '1.00',
+        'SR2_NoTag_em' : '1.00',
+        'SR2_NoTag_mm' : '1.00',
+        },
+    }
+
+nuisances['Nojetrate_SR3']  = {
+    'name'  : 'Nojetrate_SR3', 
+    'samples'  : {
+        'T'                             : '1.',
+        '03_VZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJetsHT'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        },
+    'type'  : 'shape',
+    'cuts'  : {
+        'SR3_NoJet_ee' : '1.00',
+        'SR3_NoJet_em' : '1.00',
+        'SR3_NoJet_mm' : '1.00',
+        'SR3_NoTag_ee' : '1.00',
+        'SR3_NoTag_em' : '1.00',
+        'SR3_NoTag_mm' : '1.00',
+        },
+    }
+"""

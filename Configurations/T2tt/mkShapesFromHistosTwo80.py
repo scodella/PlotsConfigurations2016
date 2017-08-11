@@ -130,6 +130,7 @@ class ShapeFactory:
                   for iBin in range(1, nBins+1):
                       yValue = histo.GetBinContent(iBin)
                       histo.SetBinError(iBin, math.sqrt(abs(yValue)))
+              histo = self._checkBadBins(histo)
               self._outFile.cd(cutName + "/" + variableName)
               histo.Write()
               fileIn.Close()
@@ -240,19 +241,19 @@ class ShapeFactory:
                                      
                                 yValue = histoTemplate.GetBinContent(iBin)
 
-                                if ( ("Bin4" in nuisanceName and iBin==4) or 
-                                     ("Bin5" in nuisanceName and iBin==5) or 
-                                     ("Bin6" in nuisanceName and iBin==6) or 
-                                     ("Bin7" in nuisanceName and iBin==7) ):
+                                if ( ("Bin4" in nuisanceName and iBin==2) or 
+                                     ("Bin5" in nuisanceName and iBin==3) or 
+                                     ("Bin6" in nuisanceName and iBin==4) or 
+                                     ("Bin7" in nuisanceName and iBin==5) ):
 
                                     rError = float(nuisance['samples'][sampleName])
-                                    if ("Bin4" in nuisanceName and iBin==4): # Bleah: manually for the moment
-                                        rError = 0.05
-                                    if ("Bin5" in nuisanceName and iBin==5):
+                                    if ("Bin4" in nuisanceName and iBin==2): # Bleah: manually for the moment
+                                        rError = 0.00
+                                    if ("Bin5" in nuisanceName and iBin==3):
                                         rError = 0.10
-                                    if ("Bin6" in nuisanceName and iBin==6):
+                                    if ("Bin6" in nuisanceName and iBin==4):
                                         rError = 0.20
-                                    if ("Bin7" in nuisanceName and iBin==7):
+                                    if ("Bin7" in nuisanceName and iBin==5):
                                         rError = 0.30
                                     yError = yValue * rError
 
@@ -271,9 +272,9 @@ class ShapeFactory:
                                     histoBinDo.SetBinError  (iBin, yError)
                                   
                             self._outFile.cd(cutName + "/" + variableName)
-                            histoBinUp = self._checkBadBins(histoBinUp)
+                            #histoBinUp = self._checkBadBins(histoBinUp)
                             histoBinUp.Write()
-                            histoBinDo = self._checkBadBins(histoBinDo)
+                            #histoBinDo = self._checkBadBins(histoBinDo)
                             histoBinDo.Write()
 
                             fileIn.Close()
@@ -389,7 +390,7 @@ class ShapeFactory:
                           histoTemplate.Scale(1.47)
                       if (sampleName == "07_ZJetsHT" or sampleName == "03_VZ") :
                           histoTemplate.Scale(1.40)
-                      histoTemplate = self._checkBadBins(histoTemplate)
+                      histo = self._checkBadBins(histoTemplate)
 
                       nBins = histoTemplate.GetNbinsX()
                       xInitial = histoTemplate.GetBinLowEdge(1)
@@ -451,17 +452,56 @@ class ShapeFactory:
 
 
     def _checkBadBins(self, histo):
+ 
+        histoName = histo.GetName() 
+       
+        if 'Data' not in histoName :
+            
+            histoIntegral = histo.Integral()
+            nBins = histo.GetNbinsX()
+            for iBin in range(1, nBins+1):
+                yValue = histo.GetBinContent(iBin)
+                if yValue <= 0. :
+                    histo.SetBinContent(iBin, 0.001)
+            histoIntegralCorrected = histo.Integral()
+            if (histoIntegralCorrected!=0 and histoIntegral > 0) :
+                histo.Scale(histoIntegral/histoIntegralCorrected)
 
-        histoIntegral = histo.Integral()
-        nBins = histo.GetNbinsX()
-        for iBin in range(1, nBins+1):
-            yValue = histo.GetBinContent(iBin)
-            if yValue <= 0. :
-                histo.SetBinContent(iBin, 0.001)
-        histoIntegralCorrected = histo.Integral()
-        if (histoIntegralCorrected!=0 and histoIntegral > 0) :
-            histo.Scale(histoIntegral/histoIntegralCorrected)
-        return histo
+        if ('_stat' in histoName or '_ibin' in histoName) : 
+            return histo    
+        else :
+            
+            nBins = histo.GetNbinsX()
+            nBins2 = 2
+            for iBin in range(1, nBins+1):
+                if histo.GetXaxis().GetBinCenter(iBin)>80 :
+                    nBins2 += 1       
+            fitHisto = ROOT.TH1F('fitHisto', '', nBins2, 0, nBins2)
+        
+            firstBinContent = 0.
+            firstBinError = 0.
+            secondBinContent = 0.
+            secondBinError = 0.
+            for iBin in range(1, nBins+1):
+                yValue = histo.GetBinContent(iBin)
+                yError = histo.GetBinError(iBin)
+                if histo.GetXaxis().GetBinCenter(iBin)>80 :
+                    fitHisto.SetBinContent(iBin-nBins+nBins2, yValue)
+                    fitHisto.SetBinError(iBin-nBins+nBins2, yError)
+                elif histo.GetXaxis().GetBinCenter(iBin)>40 :
+                    secondBinContent += yValue
+                    secondBinError += (yError*yError)
+                else :
+                    firstBinContent += yValue
+                    firstBinError += (yError*yError)
+            fitHisto.SetBinContent(1, firstBinContent)
+            fitHisto.SetBinError(1, math.sqrt(firstBinError))
+            fitHisto.SetBinContent(2, secondBinContent)
+            fitHisto.SetBinError(2, math.sqrt(secondBinError))
+
+            fitHisto.SetName(histoName)
+            return fitHisto
+
 
     def _getFastSimShape(self, fileIn, shapeName, shapeNameGen):
 

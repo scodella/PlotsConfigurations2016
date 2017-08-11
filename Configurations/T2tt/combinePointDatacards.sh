@@ -24,6 +24,10 @@ combineCards.py SR1=datacardSR1T.txt SR2=datacardSR2T.txt SR3=datacardSR3T.txt >
 combineCards.py SR1=datacardSR1V.txt SR2=datacardSR2V.txt SR3=datacardSR3V.txt > datacardNoTag.txt 
 combineCards.py SR1=datacardSR10.txt SR2=datacardSR20.txt SR3=datacardSR30.txt > datacardNoJet.txt 
 #
+#combineCards.py SR1=./SR1_Tag_ll/MT2ll/datacard.txt   SR2=./SR2_Tag_ll/MT2ll/datacard.txt   SR3=./SR3_Tag_ll/MT2llisr/datacard.txt   > datacardTag.txt 
+#combineCards.py SR1=./SR1_NoTag_ll/MT2ll/datacard.txt SR2=./SR2_NoTag_ll/MT2ll/datacard.txt SR3=./SR3_NoTag_ll/MT2llisr/datacard.txt > datacardNoTag.txt 
+#combineCards.py SR1=./SR1_NoJet_ll/MT2ll/datacard.txt SR2=./SR2_NoJet_ll/MT2ll/datacard.txt SR3=./SR3_NoJet_ll/MT2ll/datacard.txt > datacardNoJet.txt 
+#
 #combineCards.py Tag=datacardTag.txt NoTag=datacardNoTag.txt > datacardFinal.txt 
 combineCards.py Tag=datacardTag.txt NoTag=datacardNoTag.txt NoJet=datacardNoJet.txt > datacardFinal.txt 
 #
