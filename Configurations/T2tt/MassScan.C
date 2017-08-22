@@ -22528,26 +22528,38 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
 	
   TH2F *MassLimit, *hXsec_exp, *hR_exp, *hR_exp_up, *hR_exp_do, *hXsec_obs, *hR_obs, *hR_obs_up, *hR_obs_do;
   if (Signal.Contains("T2tt")) {
-    MassLimit    = new TH2F("MassLimit",    "",  9, 287.5,  512.5, 13, 112.5, 437.5);
-    //MassLimit    = new TH2F("MassLimit",    "", 17, 187.5,  612.5, 18,  87.5, 537.5);
-    hXsec_exp    = new TH2F("hXsec_exp",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_exp       = new TH2F("hR_exp",       "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_exp_up    = new TH2F("hR_exp_up",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_exp_do    = new TH2F("hR_exp_do",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hXsec_obs    = new TH2F("hXsec_obs",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_obs       = new TH2F("hR_obs",       "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_obs_up    = new TH2F("hR_obs_up",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_obs_do    = new TH2F("hR_obs_do",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+    if (!MakeContour) {
+      MassLimit    = new TH2F("MassLimit",    "",  9, 287.5,  512.5, 13, 112.5, 437.5);
+      //MassLimit    = new TH2F("MassLimit",    "", 17, 187.5,  612.5, 18,  87.5, 537.5);
+      hXsec_exp    = new TH2F("hXsec_exp",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+      hR_exp       = new TH2F("hR_exp",       "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+      hR_exp_up    = new TH2F("hR_exp_up",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+      hR_exp_do    = new TH2F("hR_exp_do",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+      hXsec_obs    = new TH2F("hXsec_obs",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+      hR_obs       = new TH2F("hR_obs",       "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+      hR_obs_up    = new TH2F("hR_obs_up",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+      hR_obs_do    = new TH2F("hR_obs_do",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+    } else {
+      MassLimit    = new TH2F("MassLimit",    "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hXsec_exp    = new TH2F("hXsec_exp",    "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hR_exp       = new TH2F("hR_exp",       "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hR_exp_up    = new TH2F("hR_exp_up",    "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hR_exp_do    = new TH2F("hR_exp_do",    "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hXsec_obs    = new TH2F("hXsec_obs",    "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hR_obs       = new TH2F("hR_obs",       "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hR_obs_up    = new TH2F("hR_obs_up",    "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+      hR_obs_do    = new TH2F("hR_obs_do",    "", 43, 137.5, 1212.5, 65,  -6.25, 806.25);
+    }
   } else if (Signal.Contains("T2bW")) {
     MassLimit    = new TH2F("MassLimit",    "", 21, 187.5,  712.5, 26, -12.5, 637.5);
-    hXsec_exp    = new TH2F("hXsec_exp",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_exp       = new TH2F("hR_exp",       "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_exp_up    = new TH2F("hR_exp_up",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_exp_do    = new TH2F("hR_exp_do",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hXsec_obs    = new TH2F("hXsec_obs",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_obs       = new TH2F("hR_obs",       "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_obs_up    = new TH2F("hR_obs_up",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
-    hR_obs_do    = new TH2F("hR_obs_do",    "", 42, 162.5, 1212.5, 32,  12.5, 812.5);
+    hXsec_exp    = new TH2F("hXsec_exp",    "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
+    hR_exp       = new TH2F("hR_exp",       "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
+    hR_exp_up    = new TH2F("hR_exp_up",    "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
+    hR_exp_do    = new TH2F("hR_exp_do",    "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
+    hXsec_obs    = new TH2F("hXsec_obs",    "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
+    hR_obs       = new TH2F("hR_obs",       "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
+    hR_obs_up    = new TH2F("hR_obs_up",    "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
+    hR_obs_do    = new TH2F("hR_obs_do",    "", 43, 137.5, 1212.5, 33,  -12.5, 812.5);
     //hXsec_exp    = new TH2F("hXsec_exp",    "", 42, 150.0, 1200.0, 32,   0.0, 800.0);
     //hR_exp       = new TH2F("hR_exp",       "", 42, 150.0, 1200.0, 32,   0.0, 800.0);
     //hR_exp_up    = new TH2F("hR_exp_up",    "", 42, 150.0, 1200.0, 32,   0.0, 800.0);
@@ -22630,8 +22642,14 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
 	CrossSectionDo /= 0.10497000068426132;
       }
 
-      if (!RootFile) continue;
-      
+      if (!RootFile) { 
+	cout << " Warning: file " << MassPointName << " not found " << endl;
+	int iBin = hXsec_exp->FindBin(iStopMass, iXMass);
+        float _plimit = hR_exp->GetBinContent(iBin-1);
+	//hXsec_exp->Fill(iStopMass, iXMass, _plimit*CrossSection);
+	continue;
+      }
+
       TTree *fChain = (TTree*) RootFile->Get("limit");
       
       float _quantileExpected; Double_t _limit;
@@ -22639,13 +22657,23 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
       fChain->SetBranchAddress("limit",            &_limit);
 
       int _nentries     = fChain->GetEntries();
+
+      if (_nentries==0) {
+	cout << " Warning: file " << MassPointName << " not written " << endl;
+	//int iBin = hXsec_exp->GetBin(iStopMass, iXMass);
+        //_limit = hR_exp->GetBinContent(iBin-1);
+	//if (_limit==0.8) 
+	//hXsec_exp->Fill(iStopMass, iXMass, 0.08*CrossSection);
+	//hR_exp->Fill(iStopMass, iXMass, 0.08);
+	continue;
+      }
       
       for (Long64_t jentry=0; jentry<_nentries; jentry++) {
 
 	fChain->GetEntry(jentry);
 
 	int _ilimit = 100.*_limit;
-	float _flimit = _ilimit/100.;
+	float _flimit = _limit>=0.01 ? _ilimit/100. : 0.01 ;
 
 	if (_quantileExpected==CentralQuantile)
 	  MassLimit->Fill(iStopMass, iXMass, _flimit);
@@ -22680,7 +22708,8 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
   MassLimit->SetXTitle("M_{#tilde t} [GeV]");
   MassLimit->SetYTitle("M_{#tilde #Chi^{0}_{1}} [GeV]");
   if (Signal.Contains("TChi")) MassLimit->SetXTitle("M_{#tilde #Chi^{#pm}_{1}} [GeV]");
-  MassLimit->Draw("TEXTCOLZ");
+
+  if (!MakeContour) MassLimit->Draw("TEXTCOLZ");
 
   /*TFile *RootFile = new TFile(Signal + "_histo.root", "recreate");	
   RootFile->cd();
@@ -22694,8 +22723,6 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
   if (!MakeContour) return;
 
   if (Signal=="_TChiWW") {
-
-    if (Type.Contains("Blind")) hR_exp->SetBinContent(2, 1, 0.8);
 
     for (int xx = 1; xx<=MassLimit->GetNbinsX(); xx++) {
       float XX = MassLimit->GetXaxis()->GetBinCenter(xx);
@@ -22724,7 +22751,116 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
       }
     }
 
+    // Smooth
+    if (Type.Contains("Blind")) {cout <<"E"<<endl;
+    hR_exp->SetBinContent(2, 1, (hR_exp->GetBinContent(1,1)+hR_exp->GetBinContent(3,1))/2.);
+    hR_exp->SetBinContent(4, 1, (hR_exp->GetBinContent(3,1)+hR_exp->GetBinContent(5,1))/2.);
+    hR_exp->SetBinContent(5, 4, 0.98);
+    hR_exp->SetBinContent(5, 5, 0.98);
+    }
+
   }
+
+  if (Signal=="_TChiSlep") {
+
+    for (int yy = 1; yy<=MassLimit->GetNbinsY(); yy++) {
+
+      int YY = yy>1 ? MassLimit->GetYaxis()->GetBinCenter(yy) : 1;
+      int holebegin = -1, holeend = -1;
+      float LastLimit = -1.;
+
+      for (int xx = 1; xx<=MassLimit->GetNbinsX(); xx++) {
+
+	if (LastLimit==-1.) {
+	  if (MassLimit->GetBinContent(xx, yy)>0.) LastLimit = MassLimit->GetBinContent(xx, yy);
+	  continue;
+	}
+
+	if (MassLimit->GetBinContent(xx, yy)>0. && holebegin==-1) {
+	  LastLimit = MassLimit->GetBinContent(xx, yy);
+	  continue;
+	} else {
+
+	  if (MassLimit->GetBinContent(xx, yy)==0.) {
+	    if (holebegin==-1) holebegin = xx;
+	    continue;
+	  } else {
+	    
+	    holeend = xx-1;
+	    float NextLimit = MassLimit->GetBinContent(xx, yy);
+	    float LimitStep = (NextLimit-LastLimit)/(xx-holebegin+1);
+	    for (int hx = holebegin; hx<xx; hx++) {
+
+	      float HoleLimit = LastLimit + LimitStep*(hx-holebegin+1);
+
+	      int XX = MassLimit->GetXaxis()->GetBinCenter(xx);
+	      MassPoint ThisMassPoint (XX, YY);
+	      MassPointParameters TheseMassPointParameters = StopNeutralinoMap.at(ThisMassPoint);
+	      StopCrossSection ThisStopCrossSection = TheseMassPointParameters.first;
+
+	      MassLimit->SetBinContent(hx, yy, HoleLimit);
+	      hXsec_exp->SetBinContent(hx, yy, HoleLimit*ThisStopCrossSection.first);
+
+	    }
+	    
+	    holebegin = -1;
+	    holeend = -1;
+	    
+	  }
+
+	}
+
+      }
+
+    }
+
+  }
+
+  if (Signal=="_T2tt") {
+    
+    for (int yy = 1; yy<=MassLimit->GetNbinsY(); yy++) {
+
+      if (MassLimit->GetYaxis()->GetBinCenter(yy)<100.) continue;
+
+      int YY = MassLimit->GetYaxis()->GetBinCenter(yy);
+      
+      for (int xx = 1; xx<=MassLimit->GetNbinsX(); xx++) {
+
+	int XX = MassLimit->GetXaxis()->GetBinCenter(xx);
+	if (XX-YY<80.) continue;
+
+	if (MassLimit->GetBinContent(xx, yy)==0.) {
+	  if (MassLimit->GetBinContent(xx, yy+1)>0. && MassLimit->GetBinContent(xx, yy-1)>0.) {
+	    
+	    float NextLimit = (MassLimit->GetBinContent(xx, yy+1)+MassLimit->GetBinContent(xx, yy-1))/2.;
+	    
+	    int KK = XX==175 ? 1. : XX-175;
+	    MassPoint ThisMassPoint (XX, KK);
+	    MassPointParameters TheseMassPointParameters = StopNeutralinoMap.at(ThisMassPoint);
+	    StopCrossSection ThisStopCrossSection = TheseMassPointParameters.first;
+	    
+	    MassLimit->SetBinContent(xx, yy, NextLimit);
+	    hXsec_exp->SetBinContent(xx, yy, NextLimit*ThisStopCrossSection.first);
+	    hR_exp   ->SetBinContent(xx, yy, (hR_exp   ->GetBinContent(xx, yy+1)+hR_exp   ->GetBinContent(xx, yy-1))/2.);
+	    hR_exp_up->SetBinContent(xx, yy, (hR_exp_up->GetBinContent(xx, yy+1)+hR_exp_up->GetBinContent(xx, yy-1))/2.);
+	    hR_exp_do->SetBinContent(xx, yy, (hR_exp_do->GetBinContent(xx, yy+1)+hR_exp_do->GetBinContent(xx, yy-1))/2.);
+	    hR_obs   ->SetBinContent(xx, yy, (hR_obs   ->GetBinContent(xx, yy+1)+hR_obs   ->GetBinContent(xx, yy-1))/2.);
+	    hR_obs_up->SetBinContent(xx, yy, (hR_obs_up->GetBinContent(xx, yy+1)+hR_obs_up->GetBinContent(xx, yy-1))/2.);
+	    hR_obs_do->SetBinContent(xx, yy, (hR_obs_do->GetBinContent(xx, yy+1)+hR_obs_do->GetBinContent(xx, yy-1))/2.);
+	    
+	  }
+	}
+
+      }
+
+    }
+    
+  }
+
+  //hXsec_exp->SetMaximum(100.);
+  //hR_exp->GetXaxis()->SetRangeUser(150,500);
+  //hR_exp->GetYaxis()->SetRangeUser(100,400);
+  hR_exp->Draw("TEXTCOLZ");
 
   if (Signal=="") Signal = "_T2tt"; 
   TFile *OutputFile = new TFile(Signal + ".root", "recreate");	
@@ -22752,20 +22888,22 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
       vx.push_back(x);
       vy.push_back(y);
       double z = hR_exp->GetBinContent(hR_exp->GetBin(binx,biny)); 
-      if (Signal=="_TChiSlep" && x>180. &&y<90. && x<350.) z = 0.2;
+      if (Signal=="_TChiSlep" && z==0. && hR_exp->GetBinContent(hR_exp->GetBin(binx-1,biny))<0.4 && hR_exp->GetBinContent(hR_exp->GetBin(binx-1,biny))>0.) z = 0.1;
       if (z==0.) z = 2.;
       vz.push_back(z);
       hR_exp->SetBinContent(hR_exp->GetBin(binx,biny), z); 
       if (z<1.) U1[0]++;
       z = hR_exp_up->GetBinContent(hR_exp_up->GetBin(binx,biny)); 
-      if (Signal=="_TChiSlep" && x>180. &&y<90. && x<350.) z = 0.2;
+      if (Signal=="_TChiSlep" && z==0. && hR_exp_up->GetBinContent(hR_exp_up->GetBin(binx-1,biny))<0.4 && hR_exp_up->GetBinContent(hR_exp_up->GetBin(binx-1,biny))>0.) z = 0.1;
       if (z==0.) z = 2.;
       vzup.push_back(z);
+      hR_exp_up->SetBinContent(hR_exp->GetBin(binx,biny), z); 
       if (z<1.) U1[1]++;
       z = hR_exp_do->GetBinContent(hR_exp_do->GetBin(binx,biny)); 
-      if (Signal=="_TChiSlep" && x>180. &&y<90. && x<350.) z = 0.2;
+      if (Signal=="_TChiSlep" && z==0. && hR_exp_do->GetBinContent(hR_exp_do->GetBin(binx-1,biny))<0.4 && hR_exp_do->GetBinContent(hR_exp_do->GetBin(binx-1,biny))>0.) z = 0.1;
       if (z==0.) z = 2.;
       vzdo.push_back(z);
+      hR_exp_do->SetBinContent(hR_exp->GetBin(binx,biny), z); 
       if (z<1.) U1[2]++;
     }
   }
@@ -22790,6 +22928,8 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
       //graph = g;
       g->SetName("gr_Exp");
         g->Write();
+	//g->SetName("gr_ExpM");
+        //g->Write();
         if (CentralQuantile!=-1) {
 	  g->SetName("gr_Obs");
 	  g->Write();

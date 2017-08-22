@@ -1,3 +1,4 @@
+
 # samples
 
 #samples = {}
@@ -71,10 +72,20 @@ samples['02_WZTo3LNu'] = {  'name': ['02_WZTo3LNu.root.root'],
                              'weights': ['1'] 
                              }
 
-#samples['11_HWW'] = {  'name': ['11_HWW.root'],    
-#                       'weight' : 'baseW', 
-#                       'weights': ['1'] 
-#                       }
+samples['11_HWW'] = {  'name': ['11_HWW.root'],    
+                       'weight' : 'baseW', 
+                       'weights': ['1'] 
+                       }
+
+samples['11_HWW'] = {  'name': ['11_HWW.root'],    
+                       'weight' : 'baseW', 
+                       'weights': ['1'] 
+                       }
+
+samples['13_VVV'] = {  'name': ['13_VVV.root'],    
+                       'weight' : 'baseW', 
+                       'weights': ['1'] 
+                       }
 
 #samples['08_WJets'] = {  'name': ['08_WJets.root.root'],    
 #                             'weight' : 'baseW', 

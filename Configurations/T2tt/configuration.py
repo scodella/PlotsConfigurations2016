@@ -8,8 +8,8 @@ outputDirDatacard = 'tempDatacards'
 #inputDir = '/eos/cms/store/user/scodella/Stop/MiniTrees/Feb2017_minitrees_blind/rootfiles/'
 #inputDir = '/afs/cern.ch/work/s/scodella/Stop/CodeDevelopment/CMSSW_8_0_26_patch1/src/AnalysisCMS/minitrees/rootfiles1703/'
 #inputDir = '/afs/cern.ch/work/s/scodella/Stop/CodeDevelopment/CMSSW_8_0_26_patch1/src/AnalysisCMS/minitrees/rootfiles1704/'
-inputDir = '/afs/cern.ch/work/s/scodella/Stop/CodeDevelopment/CMSSW_8_0_26_patch1/src/AnalysisCMS/minitrees/rootfiles3R/'
-#inputDir = '/afs/cern.ch/work/s/scodella/Stop/CodeDevelopment/CMSSW_8_0_26_patch1/src/AnalysisCMS/minitrees/rootfiles2R/'
+#inputDir = '/afs/cern.ch/work/s/scodella/Stop/CodeDevelopment/CMSSW_8_0_26_patch1/src/AnalysisCMS/minitrees/rootfiles3R/'
+inputDir = '/afs/cern.ch/work/s/scodella/Stop/CodeDevelopment/CMSSW_8_0_26_patch1/src/AnalysisCMS/minitrees/rootfiles2R/'
 #inputDir = '/eos/cms/store/user/scodella/Stop/MiniTrees/minitrees_36fb/rootfiles/'
 
 # luminosity to normalize to

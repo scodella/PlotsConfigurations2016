@@ -448,21 +448,39 @@ class DatacardFactory:
                     # I do it here and not before because I want the freee floating parameters at the end of the datacard
                     if nuisance ['type'] == 'rateParam' :
                       #LS apply only to selected bins  
-                      if cutName in nuisance['cuts'].keys() :
-                        card.write((nuisance['name']).ljust(80-20))
-                        card.write((nuisance ['type']).ljust(20))
-                        card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
-                        # apply only to selected samples
-                        for sampleName in self.signals:
-                          if sampleName in nuisance['samples'].keys() :
-                            card.write((sampleName).ljust(20))
-                            card.write(('%-.4f' % float(nuisance['samples'][sampleName])).ljust(columndef))
-                        for sampleName in self.backgrounds:
-                          if sampleName in nuisance['samples'].keys() :
-                            card.write((sampleName).ljust(20))
-                            card.write(('%-.4f' % float(nuisance['samples'][sampleName])).ljust(columndef))
-                        card.write('\n')
-
+                      if cutName in nuisance['cuts'].keys() : # This is useless, AFAIK
+                          if "Rate_" not in nuisanceName : # The following is standard
+                              card.write((nuisance['name']).ljust(80-20))
+                              card.write((nuisance ['type']).ljust(20))
+                              card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
+                              # apply only to selected samples
+                              for sampleName in self.signals:
+                                  if sampleName in nuisance['samples'].keys() :
+                                      card.write((sampleName).ljust(20))
+                                      card.write(('%-.4f' % float(nuisance['samples'][sampleName])).ljust(columndef))
+                              for sampleName in self.backgrounds:
+                                  if sampleName in nuisance['samples'].keys() :
+                                      card.write((sampleName).ljust(20))
+                                      card.write(('%-.4f' % float(nuisance['samples'][sampleName])).ljust(columndef))
+                              card.write('\n')
+                          else: # This is not standard anymore ;)
+                              for sampleName in self.backgrounds:
+                                  if sampleName in nuisance['samples'].keys() :
+                                      card.write((nuisance['name']).ljust(80-20))
+                                      card.write((nuisance ['type']).ljust(20))
+                                      card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
+                                      card.write((sampleName).ljust(20))
+                                      if "NoJetRate" in nuisanceName : 
+                                          card.write("1. [0.5,1.5]  ")
+                                      else: # (1+A/B*(1-k)
+                                          card.write(("1+@0/@1*(1.-@2)").ljust(20))
+                                          histoB = self._fileIn.Get(cutName                             +'/'+variableName+'/histo_' + sampleName)
+                                          histoA = self._fileIn.Get(cutName.replace("_NoTag_","_NoJet_")+'/'+variableName+'/histo_' + sampleName)
+                                          yieldB = '%-.4f' % histoB.Integral()
+                                          yieldA = '%-.4f' % histoA.Integral()
+                                          card.write(yieldA+","+yieldB+","+nuisanceName.replace("NoTagRate","NoJetRate"))
+                                          #print "Check: ",cutName, nuisanceName
+                                      card.write('\n')
                
             # now add other nuisances            
             # Are there other kind of nuisances I forgot?

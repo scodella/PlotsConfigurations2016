@@ -54,10 +54,15 @@ structure['02_WZTo3LNu']  = {
     'isData'   : 0 
     }
   
-#structure['11_HWW']  = {  
-#    'isSignal' : 0,
-#    'isData'   : 0 
-#    }
+structure['11_HWW']  = {  
+    'isSignal' : 0,
+    'isData'   : 0 
+    }
+  
+structure['13_VVV']  = {  
+    'isSignal' : 0,
+    'isData'   : 0 
+    }
   
 #structure['08_WJets']  = {  
 #    'isSignal' : 0,
