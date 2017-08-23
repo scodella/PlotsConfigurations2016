@@ -59,13 +59,13 @@ nuisances['normTTbar']  = {
     'type'  : 'lnN',
     }
 
-nuisances['normWW']  = {
-    'name'  : 'normWW', 
-    'samples'  : {
-        '06_WW'                            : '1.1',
-        },
-    'type'  : 'lnN',
-    }
+#nuisances['normWW']  = {
+#    'name'  : 'normWW', 
+#    'samples'  : {
+#        '06_WW'                            : '1.1',
+#        },
+#    'type'  : 'lnN',
+#    }
 
 nuisances['normTW']  = {
     'name'  : 'normTW', 
