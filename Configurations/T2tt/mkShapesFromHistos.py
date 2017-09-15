@@ -471,7 +471,7 @@ class ShapeFactory:
         else:
             eeShapeName = thisShapeName.replace("_sf", "_ee")
             mmShapeName = thisShapeName.replace("_sf", "_mm")
-            #print thisShapeName, eeShapeName, mmShapeName
+            print thisShapeName, eeShapeName, mmShapeName
             sfHisto = fileIn.Get(eeShapeName)
             mmHisto = fileIn.Get(mmShapeName)
             sfHisto.Add(mmHisto)
@@ -493,12 +493,12 @@ class ShapeFactory:
         historeco = self._getShape(fileIn, shapeName, -999.)
 
         if self._fastsimMet=="reco" :
-            return self._checkBadBins(historeco, lumi, thisShapeName)
+            return self._checkBadBins(historeco, lumi, shapeName)
         
         histogen  = self._getShape(fileIn, shapeNameGen, -999.)
         
         if self._fastsimMet=="gen" :
-            return self._checkBadBins(histogen, lumi, thisShapeName)
+            return self._checkBadBins(histogen, lumi, shapeNameGen)
 
         nBins = historeco.GetNbinsX()
         xInitial = historeco.GetBinLowEdge(1)
@@ -514,7 +514,7 @@ class ShapeFactory:
             histo.SetBinContent(iBin, yValue)
             histo.SetBinError(iBin, yError)
             
-        return self._checkBadBins(histo, lumi, thisShapeName)
+        return self._checkBadBins(histo, lumi, shapeName)
 
 
 

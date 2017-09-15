@@ -20,7 +20,7 @@ nuisances['lumiMoriond17']  = {
     }
 
 nuisances['normWZ']  = {
-    'name'  : 'normTTW', 
+    'name'  : 'normWZ', 
     'samples'  : {
         '02_WZTo3LNu'                      : '1.04',
         },
@@ -328,7 +328,7 @@ nuisances['JES']  = {
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
         '10_TTZ'                           : '1.',
-        '07_ZJetsHT_DYcorr'                         : '1.',
+        #'07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
         '13_VVV'                           : '1.',
@@ -346,7 +346,7 @@ nuisances['MET']  = {
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
         '10_TTZ'                           : '1.',
-        '07_ZJetsHT_DYcorr'                         : '1.',
+        #'07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
         '13_VVV'                           : '1.',

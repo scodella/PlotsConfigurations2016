@@ -429,7 +429,7 @@ class DatacardFactory:
                                     yieldB = '%-.4f' % histoB.Integral()
                                     yieldA = '%-.4f' % histoA.Integral()
                                     card.write(yieldA+","+yieldB+","+nuisanceName.replace("NoJetRate","NoTagRate"))
-                                    card.write('\n')
+                                card.write('\n')
                
             # now add other nuisances            
             # Are there other kind of nuisances I forgot?
