@@ -47,7 +47,7 @@ samples['06_WW'] = {  'name': ['06_WW.root'],
                              'weights': ['1'] 
                              }
 
-samples['07_ZJetsHT'] = {  'name': ['07_ZjetsHT.root'],    
+samples['07_ZJetsHT_DYcorr'] = {  'name': ['07_ZJetsHT_DYcorr.root'],    
                              'weight' : 'baseW', 
                              'weights': ['1'] 
                              }

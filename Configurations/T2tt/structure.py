@@ -29,7 +29,7 @@ structure['06_WW']  = {
     'isData'   : 0 
     }
 
-structure['07_ZJetsHT']  = {  
+structure['07_ZJetsHT_DYcorr']  = {  
     'isSignal' : 0,
     'isData'   : 0 
     }

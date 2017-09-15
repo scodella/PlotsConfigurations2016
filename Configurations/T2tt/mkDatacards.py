@@ -10,10 +10,6 @@ import os.path
 
 
 
-
-
-
-
 # ----------------------------------------------------- DatacardFactory --------------------------------------
 
 class DatacardFactory:
@@ -198,7 +194,8 @@ class DatacardFactory:
               use_this_nuisance = False
               if  'cuts' in nuisance.keys() :
                 for Cuts_where_to_use_nuisance  in   nuisance['cuts'] :
-                  if Cuts_where_to_use_nuisance == cutName :
+                  #if Cuts_where_to_use_nuisance == cutName :
+                  if Cuts_where_to_use_nuisance in cutName :
                     # use this niusance
                     use_this_nuisance = True
               else :
@@ -272,40 +269,6 @@ class DatacardFactory:
                                              )
                           else :
                             card.write(('-').ljust(columndef))
-
-                    # LS
-                    elif nuisance ['type'] == 'shapefit' :
-                        if cutName in nuisance['cuts'].keys() :
-                            inputFitFile = outputDirDatacard + '/' + (nuisance['rootfile']) + '.root'
-                            if (os.path.isfile(inputFitFile)) :
-                                card.write(("CMS_" + (nuisance['name'])).ljust(80-20))
-                                card.write(("shape").ljust(20))
-                                fitfileIn = ROOT.TFile(inputFitFile, "READ")
-                                for sampleName in self.signals:
-                                    if sampleName in nuisance['samples'].keys() :
-                                        card.write(('1.000').ljust(columndef))      
-                                        histoUp = fitfileIn.Get(cutName + '/histo_' + sampleName + '_' + (nuisance['name']) + "Up")
-                                        histoUp.SetName('histo_' + sampleName + '_CMS_' + (nuisance['name']) + "Up")
-                                        histoDo = fitfileIn.Get(cutName + '/histo_' + sampleName + '_' + (nuisance['name']) + "Down")
-                                        histoDo.SetName('histo_' + sampleName + '_CMS_' + (nuisance['name']) + "Down")
-                                        self._outFile.cd()
-                                        histoUp.Write()
-                                        histoDo.Write()
-                                    else :
-                                        card.write(('-').ljust(columndef))
-                                for sampleName in self.backgrounds:
-                                    if sampleName in nuisance['samples'].keys() :
-                                        card.write(('1.000').ljust(columndef))      
-                                        histoUp = fitfileIn.Get(cutName + '/histo_' + sampleName + '_' + (nuisance['name']) + "Up")
-                                        histoUp.SetName('histo_' + sampleName + '_CMS_' + (nuisance['name']) + "Up")
-                                        histoDo = fitfileIn.Get(cutName + '/histo_' + sampleName + '_' + (nuisance['name']) + "Down")
-                                        histoDo.SetName('histo_' + sampleName + '_CMS_' + (nuisance['name']) + "Down")
-                                        self._outFile.cd()
-                                        histoUp.Write()
-                                        histoDo.Write()
-                                    else :
-                                        card.write(('-').ljust(columndef))
-                                fitfileIn.Close()
 
                   # new line at the end of any nuisance that is *not* stat ... because in that case it's already done on its own
                   card.write('\n')
@@ -447,40 +410,26 @@ class DatacardFactory:
                     # 'rateParam' has a separate treatment -> it's just a line at the end of the datacard. It defines "free floating" samples
                     # I do it here and not before because I want the freee floating parameters at the end of the datacard
                     if nuisance ['type'] == 'rateParam' :
-                      #LS apply only to selected bins  
-                      if cutName in nuisance['cuts'].keys() : # This is useless, AFAIK
-                          if "Rate_" not in nuisanceName : # The following is standard
-                              card.write((nuisance['name']).ljust(80-20))
-                              card.write((nuisance ['type']).ljust(20))
-                              card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
-                              # apply only to selected samples
-                              for sampleName in self.signals:
-                                  if sampleName in nuisance['samples'].keys() :
-                                      card.write((sampleName).ljust(20))
-                                      card.write(('%-.4f' % float(nuisance['samples'][sampleName])).ljust(columndef))
-                              for sampleName in self.backgrounds:
-                                  if sampleName in nuisance['samples'].keys() :
-                                      card.write((sampleName).ljust(20))
-                                      card.write(('%-.4f' % float(nuisance['samples'][sampleName])).ljust(columndef))
-                              card.write('\n')
-                          else: # This is not standard anymore ;)
-                              for sampleName in self.backgrounds:
-                                  if sampleName in nuisance['samples'].keys() :
-                                      card.write((nuisance['name']).ljust(80-20))
-                                      card.write((nuisance ['type']).ljust(20))
-                                      card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
-                                      card.write((sampleName).ljust(20))
-                                      if "NoJetRate" in nuisanceName : 
-                                          card.write("1. [0.5,1.5]  ")
-                                      else: # (1+A/B*(1-k)
-                                          card.write(("1+@0/@1*(1.-@2)").ljust(20))
-                                          histoB = self._fileIn.Get(cutName                             +'/'+variableName+'/histo_' + sampleName)
-                                          histoA = self._fileIn.Get(cutName.replace("_NoTag_","_NoJet_")+'/'+variableName+'/histo_' + sampleName)
-                                          yieldB = '%-.4f' % histoB.Integral()
-                                          yieldA = '%-.4f' % histoA.Integral()
-                                          card.write(yieldA+","+yieldB+","+nuisanceName.replace("NoTagRate","NoJetRate"))
-                                          #print "Check: ",cutName, nuisanceName
-                                      card.write('\n')
+
+                        for sampleName in self.backgrounds:
+                            if sampleName in nuisance['samples'].keys() :
+                                card.write((nuisance['name']).ljust(80-20))
+                                card.write((nuisance ['type']).ljust(20))
+                                card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
+                                card.write((sampleName).ljust(20))
+                                if "NoJetRate_" not in nuisanceName :
+                                    if "JetRate_" in nuisanceName :
+                                        card.write("1. [0.8,1.2]  ")
+                                    else :
+                                        card.write("1. ")
+                                else: # (1+A/B*(1-k)
+                                    card.write(("1+@0/@1*(1.-@2)").ljust(20))
+                                    histoB = self._fileIn.Get(cutName                             +'/'+variableName+'/histo_' + sampleName)
+                                    histoA = self._fileIn.Get(cutName.replace("_NoJet_","_NoTag_")+'/'+variableName+'/histo_' + sampleName)
+                                    yieldB = '%-.4f' % histoB.Integral()
+                                    yieldA = '%-.4f' % histoA.Integral()
+                                    card.write(yieldA+","+yieldB+","+nuisanceName.replace("NoJetRate","NoTagRate"))
+                                    card.write('\n')
                
             # now add other nuisances            
             # Are there other kind of nuisances I forgot?

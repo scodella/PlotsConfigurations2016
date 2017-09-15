@@ -52,8 +52,16 @@ void MassScanComparison(TString Type = "", TString Reference = "" , TString Vers
       TTree *fChain1 = (TTree*) RootFile1->Get("limit");
       TTree *fChain2 = (TTree*) RootFile2->Get("limit");
 
-      if (!fChain1 || !fChain2) continue;
-      
+      if (!fChain1 || !fChain2) { 
+	cout << "Warning: " << MassPoint << " ";
+	if (!fChain1) cout << Reference;
+	if (!fChain2) cout << Version;
+	cout << " does not have chain" << endl;
+	RootFile1->Close();
+	RootFile2->Close();
+	continue;
+      }
+
       Float_t _quantileExpected1; Double_t _limit1;
       fChain1->SetBranchAddress("quantileExpected", &_quantileExpected1);
       fChain1->SetBranchAddress("limit",            &_limit1);
@@ -65,8 +73,16 @@ void MassScanComparison(TString Type = "", TString Reference = "" , TString Vers
       int _nentries1     = fChain1->GetEntries();
       int _nentries2     = fChain2->GetEntries();
 
-      if ( _nentries1==0 || _nentries2==0) continue;
-      
+      if (_nentries1==0 || _nentries2==0) {
+	cout << "Warning: " << MassPoint << " ";
+	if (_nentries1==0 ) cout << Reference;
+	if (_nentries2==0 ) cout << Version;
+	cout << " has no entries" << endl;
+	RootFile1->Close();
+	RootFile2->Close();
+	continue;
+      }
+
       float pointlimit1, pointlimit2;
 
       for (Long64_t jentry=0; jentry<_nentries1;jentry++) {

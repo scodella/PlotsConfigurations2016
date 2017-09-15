@@ -23,8 +23,8 @@ void SetSUSYProductionMap(TString SUSYProductionProcess) {
 
   SUSYProductionProcess.ReplaceAll("_", "");
 
-  if (SUSYProductionProcess=="T2bW")
-    SUSYProductionProcess = "T2tt";
+  //if (SUSYProductionProcess=="T2bW")
+  //SUSYProductionProcess = "T2tt";
 
   if (SUSYProductionProcess=="T2tt") {
 
@@ -22609,7 +22609,7 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
     InFile >> MassPointName;
     
     if (!MassPointName.Contains("#") && MassPointName!="") {
-      
+      cout <<  MassPointName<< endl;
       TString RootFileName = "./Datacards" + Version + "/MassPoint" + MassPointName + "/datacardFinal" + Type + ".root";
       //RootFileName.ReplaceAll("2tt", "tt");
       TFile *RootFile = TFile::Open(RootFileName, "read");
@@ -22914,7 +22914,7 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
   gsmooth.GetHistogram();
   TList *list = gsmooth.GetContourList(1.); 
   TIter liter(list);
-  int max_points = 991, min_points = 10;
+  int max_points = 991, min_points = 12;
   for(int i = 0; i < list->GetSize(); ++i){
     TGraph *g = static_cast<TGraph*>(list->At(i));
     if(g == nullptr) continue;
