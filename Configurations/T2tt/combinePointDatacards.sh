@@ -22,7 +22,7 @@ then
     combineCards.py SR1=datacardSR1T.txt SR2=datacardSR2T.txt SR3=datacardSR3T.txt > datacardTag.txt 
     combineCards.py SR1=datacardSR1V.txt SR2=datacardSR2V.txt SR3=datacardSR3V.txt > datacardVeto.txt 
     #
-    combineCards.py Tag=datacardTag.txt NoTag=datacardVeto.txt > datacardFinal.txt 
+    combineCards.py Tag=datacardTag.txt Veto=datacardVeto.txt > datacardFinal.txt 
 fi
 #
 if [[ "$1" = *"MassPointChi"* ]]

@@ -23,8 +23,8 @@ void SetSUSYProductionMap(TString SUSYProductionProcess) {
 
   SUSYProductionProcess.ReplaceAll("_", "");
 
-  //if (SUSYProductionProcess=="T2bW")
-  //SUSYProductionProcess = "T2tt";
+  if (SUSYProductionProcess=="T2bW")
+    SUSYProductionProcess = "T2tt";
 
   if (SUSYProductionProcess=="T2tt") {
 
@@ -22752,12 +22752,10 @@ void MassScan(TString Type = "", TString Version = "", TString Signal = "_T2tt",
     }
 
     // Smooth
-    if (Type.Contains("Blind")) {cout <<"E"<<endl;
     hR_exp->SetBinContent(2, 1, (hR_exp->GetBinContent(1,1)+hR_exp->GetBinContent(3,1))/2.);
     hR_exp->SetBinContent(4, 1, (hR_exp->GetBinContent(3,1)+hR_exp->GetBinContent(5,1))/2.);
     hR_exp->SetBinContent(5, 4, 0.98);
     hR_exp->SetBinContent(5, 5, 0.98);
-    }
 
   }
 

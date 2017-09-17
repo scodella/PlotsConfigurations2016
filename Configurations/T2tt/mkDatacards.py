@@ -417,18 +417,23 @@ class DatacardFactory:
                                 card.write((nuisance ['type']).ljust(20))
                                 card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
                                 card.write((sampleName).ljust(20))
-                                if "NoJetRate_" not in nuisanceName :
-                                    if "JetRate_" in nuisanceName :
-                                        card.write("1. [0.8,1.2]  ")
-                                    else :
-                                        card.write("1. ")
+                                if "JetRate_" not in nuisanceName :
+                                    card.write("1. ")
+                                elif "NoJetRate_" in nuisanceName :
+                                    if "_DibosonBack" in nuisanceName :
+                                        card.write("1. [0.7,1.3]  ")
+                                    elif "_JetBack" in nuisanceName :
+                                        card.write("1. [0.5,1.5] ")
+                                    else: # This is just a protection
+                                        card.write("1. [0.999,1.001] ")
                                 else: # (1+A/B*(1-k)
                                     card.write(("1+@0/@1*(1.-@2)").ljust(20))
                                     histoB = self._fileIn.Get(cutName                             +'/'+variableName+'/histo_' + sampleName)
-                                    histoA = self._fileIn.Get(cutName.replace("_NoJet_","_NoTag_")+'/'+variableName+'/histo_' + sampleName)
+                                    histoA = self._fileIn.Get(cutName.replace("_NoTag_","_NoJet_")+'/'+variableName+'/histo_' + sampleName)
                                     yieldB = '%-.4f' % histoB.Integral()
                                     yieldA = '%-.4f' % histoA.Integral()
-                                    card.write(yieldA+","+yieldB+","+nuisanceName.replace("NoJetRate","NoTagRate"))
+                                    card.write(yieldA+","+yieldB+","+nuisanceName.replace("JetRate","NoJetRate"))
+            
                                 card.write('\n')
                
             # now add other nuisances            

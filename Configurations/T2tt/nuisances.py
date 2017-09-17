@@ -39,7 +39,7 @@ nuisances['normTTZ']  = {
 nuisances['normVZnojet']  = {
     'name'  : 'normVZnojet', 
     'samples'  : {
-        '03_VZ'                            : '1.29', # 0.92 +/- 0.27
+        '03_VZ'                            : '1.13', # 1.08 +/- 0.14
         },
     'cuts'  : {
         'NoJet' : '1.00',
@@ -328,7 +328,7 @@ nuisances['JES']  = {
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
         '10_TTZ'                           : '1.',
-        #'07_ZJetsHT_DYcorr'                         : '1.',
+        '07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
         '13_VVV'                           : '1.',
@@ -346,7 +346,7 @@ nuisances['MET']  = {
         '05_ST'                            : '1.',
         '09_TTW'                           : '1.',
         '10_TTZ'                           : '1.',
-        #'07_ZJetsHT_DYcorr'                         : '1.',
+        '07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
         '13_VVV'                           : '1.',

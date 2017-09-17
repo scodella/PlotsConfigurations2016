@@ -104,7 +104,7 @@ class ShapeFactory:
               inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + '.root'
               fileIn = ROOT.TFile(inputFile, "READ")
               #shapeName = analysisName + "/" + cutName + '/h_' + variableName
-              histo = self._getShape(fileIn, shapeName, lumi)
+              histo = self._getShape(fileIn, sampleName, shapeName, lumi)
               histo.SetName('histo_' + sampleName)
               self._outFile.cd(cutName + "/" + variableName)
               histo.Write()
@@ -114,7 +114,7 @@ class ShapeFactory:
               inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + '.root'
               fileIn = ROOT.TFile(inputFile, "READ")
               #shapeName = analysisName + "/" + cutName + '/h_' + variableName
-              histo = self._getShape(fileIn, shapeName, -999.)
+              histo = self._getShape(fileIn, sampleName, shapeName, -999.)
               histo.SetName('histo_' + sampleName)
               if (sampleName != "01_Data") :
                   histo.Scale(lumi)
@@ -175,14 +175,14 @@ class ShapeFactory:
                                     # save the nuisance histograms in the root file
                                     inputFile = inputDir + '/' + nuisance['name'] + 'up/' + analysisName + '/' + sampleName + '.root'
                                     fileInUp = ROOT.TFile(inputFile, "READ")                            
-                                    histo = self._getShape(fileInUp, shapeName, lumi)
+                                    histo = self._getShape(fileInUp, sampleName, shapeName, lumi)
                                     histo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Up")
                                     self._outFile.cd(cutName + "/" + variableName)
                                     histo.Write()
                                     fileInUp.Close()
                                     inputFile = inputDir + '/' + nuisance['name'] + 'do/' + analysisName + '/' + sampleName + '.root'
                                     fileInDo = ROOT.TFile(inputFile, "READ")
-                                    histo = self._getShape(fileInDo, shapeName, lumi)
+                                    histo = self._getShape(fileInDo, sampleName, shapeName, lumi)
                                     histo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Down")
                                     self._outFile.cd(cutName + "/" + variableName)
                                     histo.Write()
@@ -197,7 +197,7 @@ class ShapeFactory:
 
                             inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + '.root'
                             fileIn = ROOT.TFile(inputFile, "READ")
-                            histoTemplate = self._getShape(fileIn, shapeName, lumi)
+                            histoTemplate = self._getShape(fileIn, sampleName, shapeName, lumi)
 
                             nBins = histoTemplate.GetNbinsX()
                             xInitial = histoTemplate.GetBinLowEdge(1)
@@ -265,12 +265,10 @@ class ShapeFactory:
                                 shapeNameUp = shapeNameGen
                             shapeNameDo = shapeNameGen
                             if self._fastsimMet=="reco":
-                                shapeNameDo = shapeName
-                            print shapeNameUp
-                            histoUp = self._getShape(fileIn, shapeNameUp, lumi)
-                            print shapeNameDo
+                                shapeNameDo = shapeName                            
+                            histoUp = self._getShape(fileIn, sampleName, shapeNameUp, lumi)
                             histoUp.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Up")
-                            histoDo = self._getShape(fileIn, shapeNameDo, lumi)
+                            histoDo = self._getShape(fileIn, sampleName, shapeNameDo, lumi)
                             histoDo.SetName('histo_' + sampleName + '_' + (nuisance['name']) + "Down")
                             self._outFile.cd(cutName + "/" + variableName)
                             histoUp.Write()
@@ -356,7 +354,7 @@ class ShapeFactory:
 
                       inputFile = inputDir + '/nominal/' + analysisName + '/' + sampleName + '.root'
                       fileIn = ROOT.TFile(inputFile, "READ")
-                      histoTemplate = self._getShape(fileIn, shapeName, lumi)
+                      histoTemplate = self._getShape(fileIn, sampleName, shapeName, lumi)
 
                       nBins = histoTemplate.GetNbinsX()
                       xInitial = histoTemplate.GetBinLowEdge(1)
@@ -422,9 +420,9 @@ class ShapeFactory:
                       fileIn.Close()
 
 
-    def _checkBadBins(self, histo, lumi, thisShapeName):
+    def _checkBadBins(self, histo, lumi, sampleName, thisShapeName):
 
-        if lumi==-999.:
+        if lumi<0.:
             return histo
 
         histo.Scale(lumi)
@@ -439,23 +437,33 @@ class ShapeFactory:
             if yValue <= 0. :
                 histo.SetBinContent(iBin, 0.001)
                 if yValue == 0. :
-                    histo.SetBinError(iBin, 1.84102*AverageWeight)
-
+                    ApplyZeroStat = True
+                    if "07_ZJets" in sampleName :
+                        ApplyZeroStat = False
+                        if iBin>1 :
+                            if histo.GetBinContent(iBin-1)>0.005 :
+                                ApplyZeroStat = True
+                        if iBin<nBins :
+                            if histo.GetBinContent(iBin+1)>0.005 :
+                                ApplyZeroStat = True
+                    if ApplyZeroStat :
+                        histo.SetBinError(iBin, 1.84102*AverageWeight)
+                        
         histoIntegralCorrected = histo.Integral()
         if (histoIntegralCorrected!=0 and histoIntegral > 0) :
             histo.Scale(histoIntegral/histoIntegralCorrected)
 
         #histo.Scale(lumi)
-            
-        if "10_TTZ" in histo.GetName() :
+        #print sampleName, thisShapeName
+        if "10_TTZ" in sampleName :
             histo.Scale(1.44)
             print "Scaling TTZ"
-        elif "03_VZ" in histo.GetName() :
+        elif "03_VZ" in sampleName :
             if "_Veto" in thisShapeName :
                 histo.Scale(1.38)
                 print "Scaling ZZ Veto"
             elif "_NoJet" in thisShapeName :
-                histo.Scale(0.92)
+                histo.Scale(1.08)
                 print "Scaling ZZ NoJet"
             else :
                 histo.Scale(1.52)
@@ -471,34 +479,34 @@ class ShapeFactory:
         else:
             eeShapeName = thisShapeName.replace("_sf", "_ee")
             mmShapeName = thisShapeName.replace("_sf", "_mm")
-            print thisShapeName, eeShapeName, mmShapeName
+            #print thisShapeName, eeShapeName, mmShapeName
             sfHisto = fileIn.Get(eeShapeName)
             mmHisto = fileIn.Get(mmShapeName)
             sfHisto.Add(mmHisto)
             return sfHisto
 
-    def _getShape(self, fileIn, thisShapeName, lumi):
+    def _getShape(self, fileIn, sampleName, thisShapeName, lumi):
         
         if "_Veto" in thisShapeName:
             histo1  = self._readShape(fileIn, thisShapeName.replace("_Veto", "_NoTag"))
             histo2  = self._readShape(fileIn, thisShapeName.replace("_Veto", "_NoJet"))
             histo1.Add(histo2)
-            return self._checkBadBins(histo1, lumi, thisShapeName)
+            return self._checkBadBins(histo1, lumi, sampleName, thisShapeName)
         else :
             thisHisto = self._readShape(fileIn, thisShapeName)
-            return self._checkBadBins(thisHisto, lumi, thisShapeName)
+            return self._checkBadBins(thisHisto, lumi, sampleName, thisShapeName)
 
     def _getFastSimShape(self, fileIn, shapeName, shapeNameGen, lumi):
 
-        historeco = self._getShape(fileIn, shapeName, -999.)
+        historeco = self._getShape(fileIn, " ", shapeName, -999.)
 
         if self._fastsimMet=="reco" :
-            return self._checkBadBins(historeco, lumi, shapeName)
+            return self._checkBadBins(historeco, lumi, " ", " ")
         
-        histogen  = self._getShape(fileIn, shapeNameGen, -999.)
+        histogen  = self._getShape(fileIn, " ", shapeNameGen, -999.)
         
         if self._fastsimMet=="gen" :
-            return self._checkBadBins(histogen, lumi, shapeNameGen)
+            return self._checkBadBins(histogen, lumi, " ", " ")
 
         nBins = historeco.GetNbinsX()
         xInitial = historeco.GetBinLowEdge(1)
@@ -514,7 +522,7 @@ class ShapeFactory:
             histo.SetBinContent(iBin, yValue)
             histo.SetBinError(iBin, yError)
             
-        return self._checkBadBins(histo, lumi, shapeName)
+        return self._checkBadBins(histo, lumi, " ", " ")
 
 
 

@@ -25,7 +25,8 @@ lumi = 35.867
 
 variablesFile = 'variables.py' # file with list of variables
 
-cutsFile = 'cuts_stop.py' # file with list of cuts
+#cutsFile = 'cuts_stop.py' # file with list of cuts
+cutsFile = 'cuts_chargino.py' # file with list of cuts
 
 samplesFile = 'samples.py' # file with list of samples
 
