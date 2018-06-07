@@ -204,7 +204,7 @@ class DatacardFactory:
               
               if use_this_nuisance :
                
-                if nuisanceName != 'stat' : # 'stat' has a separate treatment, it's the MC/data statistics
+                if (nuisanceName != 'stat'  and 'MT2llBin' not in nuisanceName) : # 'stat' has a separate treatment, it's the MC/data statistics
                   
                   if 'type' in nuisance.keys() : # some nuisances may not have "type" ... why?
                     #print "nuisance[type] = ", nuisance ['type']
@@ -272,13 +272,55 @@ class DatacardFactory:
 
                   # new line at the end of any nuisance that is *not* stat ... because in that case it's already done on its own
                   card.write('\n')
-                 
-                  
+                
+                # MT2ll bin nuisances
+                if 'MT2llBin' in nuisanceName: 
+
+                    for cut_in_use in nuisance['cuts'] : 
+                        if cut_in_use in cutName :
+                            for bin_in_use in nuisance['cuts'][cut_in_use] :
+
+                                name_nuisance = (nuisance['name']).replace("Bin", bin_in_use)
+                                card.write(("CMS_" + name_nuisance).ljust(80-20))
+                                card.write((nuisance ['type']).ljust(20))
+                            
+                                for sampleName in self.signals:
+                                    if sampleName in nuisance['samples'].keys() :
+                                        card.write(('1.000').ljust(columndef))
+                                        # save the nuisance histograms in the root file
+                                        self._saveHisto(cutName+"/"+variableName+'/',
+                                                        'histo_' + sampleName + '_' + name_nuisance + "Up",
+                                                        'histo_' + sampleName + '_CMS_' + name_nuisance + "Up"
+                                                        )
+                                        self._saveHisto(cutName+"/"+variableName+'/',
+                                                        'histo_' + sampleName + '_' + name_nuisance + "Down",
+                                                        'histo_' + sampleName + '_CMS_' + name_nuisance + "Down"
+                                                        ) 
+                                    else :
+                                        card.write(('-').ljust(columndef))
+
+                                for sampleName in self.backgrounds:
+                                    if sampleName in nuisance['samples'].keys() :
+                                        card.write(('1.000').ljust(columndef))
+                                        # save the nuisance histograms in the root file
+                                        self._saveHisto(cutName+"/"+variableName+'/',
+                                                        'histo_' + sampleName + '_' + name_nuisance + "Up",
+                                                        'histo_' + sampleName + '_CMS_' + name_nuisance + "Up"
+                                                        )
+                                        self._saveHisto(cutName+"/"+variableName+'/',
+                                                        'histo_' + sampleName + '_' + name_nuisance + "Down",
+                                                        'histo_' + sampleName + '_CMS_' + name_nuisance + "Down"
+                                                        )
+                                    else :
+                                        card.write(('-').ljust(columndef))
+
+                                card.write('\n')
+                                              
                 # stat nuisances  
                 if nuisanceName == 'stat' : # 'stat' has a separate treatment, it's the MC/data statistics
                 
                   for sampleName in self.signals:
-                    if sampleName in nuisance['samples'].keys() :  
+                    if sampleName in nuisance['samples'].keys() :
                       if nuisance['samples'][sampleName]['typeStat'] == 'uni' : # unified approach
                        
                         card.write(( 'CMS_' + tagNameToAppearInDatacard + "_" + sampleName + "_stat" ).ljust(80-20))
@@ -416,7 +458,7 @@ class DatacardFactory:
                                 card.write((nuisance['name']).ljust(80-20))
                                 card.write((nuisance ['type']).ljust(20))
                                 card.write((tagNameToAppearInDatacard).ljust(columndef))   # the bin
-                                card.write((sampleName).ljust(20))
+                                card.write((sampleName).ljust(21))
                                 if "JetRate_" not in nuisanceName :
                                     card.write("1. ")
                                 elif "NoJetRate_" in nuisanceName :

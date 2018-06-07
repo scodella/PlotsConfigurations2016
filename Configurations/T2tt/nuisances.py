@@ -5,16 +5,16 @@ nuisances['lumiMoriond17']  = {
     'samples'  : {
         #https://twiki.cern.ch/twiki/bin/view/CMS/TWikiLUM#CurRec
         'T'                             : '1.025',
-        #'03_VZ'                            : '1.025',
+        #'03_ZZ'                            : '1.025',
         '04_TTTo2L2Nu'                     : '1.025',
         '06_WW'                            : '1.025',
         '05_ST'                            : '1.025',
         '09_TTW'                           : '1.025',
         #'10_TTZ'                           : '1.025',
         #'07_ZJetsHT_DYcorr'                : '1.025',
-        '02_WZTo3LNu'                      : '1.025',
+        #'02_WZTo3LNu'                      : '1.025',
         '11_HWW'                           : '1.025',
-        '13_VVV'                           : '1.025',
+        '15_VZ3V'                           : '1.025',
         },
     'type'  : 'lnN',
     }
@@ -22,7 +22,7 @@ nuisances['lumiMoriond17']  = {
 nuisances['normWZ']  = {
     'name'  : 'normWZ', 
     'samples'  : {
-        '02_WZTo3LNu'                      : '1.04',
+        '02_WZTo3LNu'                      : '1.09', # 0.97 +/- 0.09
         },
     'type'  : 'lnN',
     }
@@ -30,16 +30,16 @@ nuisances['normWZ']  = {
 nuisances['normTTZ']  = {
     'name'  : 'normTTZ', 
     'samples'  : {
-        '10_TTZ'                           : '1.25',
+        '10_TTZ'                           : '1.25', # 1.44 +/- 0.36
         },
     'type'  : 'lnN',
     'type'  : 'lnN',
     }
 
-nuisances['normVZnojet']  = {
-    'name'  : 'normVZnojet', 
+nuisances['normZZnojet']  = {
+    'name'  : 'normZZnojet', 
     'samples'  : {
-        '03_VZ'                            : '1.13', # 1.08 +/- 0.14
+        '03_ZZ'                            : '1.26', # 0.74 +/- 0.19
         },
     'cuts'  : {
         'NoJet' : '1.00',
@@ -47,10 +47,10 @@ nuisances['normVZnojet']  = {
     'type'  : 'lnN',
     }
 
-nuisances['normVZjet']  = {
-    'name'  : 'normVZjet', 
+nuisances['normZZjet']  = {
+    'name'  : 'normZZjet', 
     'samples'  : {
-        '03_VZ'                            : '1.13', # 1.52 +/- 0.20
+        '03_ZZ'                            : '1.14', # 1.21 +/- 0.17
         },
     'cuts'  : {
         'Tag'   : '1.00',
@@ -59,10 +59,10 @@ nuisances['normVZjet']  = {
     'type'  : 'lnN',
     }
 
-nuisances['normVZveto']  = {
-    'name'  : 'normVZveto', 
+nuisances['normZZveto']  = {
+    'name'  : 'normZZveto', 
     'samples'  : {
-        '03_VZ'                            : '1.12', # 1.38 +/- 0.17
+        '03_ZZ'                            : '1.12', # 1.06 +/- 0.12
         },
     'cuts'  : {
         'Veto' : '1.00',
@@ -70,13 +70,18 @@ nuisances['normVZveto']  = {
     'type'  : 'lnN',
     }
 
-#nuisances['normDY']  = {
-#    'name'  : 'normDY', 
-#    'samples'  : {
-#        '07_ZJetsHT_DYcorr'                         : '1.37',
-#        },
-#    'type'  : 'lnN',
-#    }
+nuisances['normDY']  = {
+    'name'  : 'normDY', 
+    'samples'  : {
+        '07_ZJetsHT_DYcorr'                         : '1.32',
+        },
+    'cuts'  : {
+        'Veto'  : '1.00',
+        'NoTag' : '1.00',
+        'Tag'   : '1.00',
+        },
+    'type'  : 'lnN',
+    }
 
 nuisances['DYshape']  = {
     'name'  : 'DYshape', 
@@ -84,7 +89,22 @@ nuisances['DYshape']  = {
         '07_ZJetsHT_DYcorr'                         : '1.',
         },
     'cuts'  : {
+        'Veto'  : '1.00',
+        'NoTag' : '1.00',
+        'NoJet' : '1.00',
+        'Tag'   : '1.00',
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['ZZshape']  = {
+    'name'  : 'ZZshape', 
+    'samples'  : {
+        '03_ZZ'                                    : '1.',
+        },
+    'cuts'  : {
         'Veto' : '1.00',
+        'NoJet' : '1.00',
         'NoTag' : '1.00',
         'Tag' : '1.00',
         },
@@ -94,7 +114,7 @@ nuisances['DYshape']  = {
 nuisances['DYnojet']  = {
     'name'  : 'DYnojet', 
     'samples'  : {
-        '07_ZJetsHT_DYcorr'                         : '4.',
+        '07_ZJetsHT_DYcorr'                         : '2.',
         },
     'cuts'  : {
         'NoJet' : '1.00',
@@ -145,7 +165,7 @@ nuisances['normHWW']  = {
 nuisances['normVVV']  = {
     'name'  : 'normVVV', 
     'samples'  : {
-        '13_VVV'                           : '1.5',
+        '15_VZ3V'                           : '1.5',
         },
     'type'  : 'lnN',
     }
@@ -156,7 +176,7 @@ nuisances['Reco']  = {
     'name'  : 'Reco', 
     'samples'  : {
         'T'                             : '1.',
-        '03_VZ'                            : '1.',
+        '03_ZZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
@@ -165,7 +185,7 @@ nuisances['Reco']  = {
         '07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -174,7 +194,7 @@ nuisances['Idiso']  = {
     'name'  : 'Idiso', 
     'samples'  : {
         'T'                             : '1.',
-        '03_VZ'                            : '1.',
+        '03_ZZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
@@ -183,47 +203,47 @@ nuisances['Idiso']  = {
         '07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        '15_VZ3V'                           : '1.',
+        },
+    'type'  : 'shape',
+    }
+"""
+nuisances['Idisoele']  = {
+    'name'  : 'Idisoele', 
+    'samples'  : {
+        'T'                             : '1.',
+        '03_ZZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJetsHT_DYcorr'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        '11_HWW'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
 
-#nuisances['Idisoele']  = {
-#    'name'  : 'Idisoele', 
-#    'samples'  : {
-#        'T'                             : '1.',
-#        '03_VZ'                            : '1.',
-#        '04_TTTo2L2Nu'                     : '1.',
-#        '06_WW'                            : '1.',
-#        '05_ST'                            : '1.',
-#        '09_TTW'                           : '1.',
-#        '10_TTZ'                          : '1.',
-#        '07_ZJetsHT_DYcorr'                         : '1.',
-#        '02_WZTo3LNu'                      : '1.',
-#        '11_HWW'                           : '1.',
-#        '13_VVV'                           : '1.',
-#        },
-#    'type'  : 'shape',
-#    }
-
-#nuisances['Idisomu']  = {
-#    'name'  : 'Idisomu', 
-#    'samples'  : {
-#        'T'                             : '1.',
-#        '03_VZ'                            : '1.',
-#        '04_TTTo2L2Nu'                     : '1.',
-#        '06_WW'                            : '1.',
-#        '05_ST'                            : '1.',
-#        '09_TTW'                           : '1.',
-#        '10_TTZ'                          : '1.',
-#        '07_ZJetsHT_DYcorr'                         : '1.',
-#        '02_WZTo3LNu'                      : '1.',
-#        '11_HWW'                           : '1.',
-#        '13_VVV'                           : '1.',
-#        },
-#    'type'  : 'shape',
-#    }
-
+nuisances['Idisomu']  = {
+    'name'  : 'Idisomu', 
+    'samples'  : {
+        'T'                             : '1.',
+        '03_ZZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJetsHT_DYcorr'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        '11_HWW'                           : '1.',
+        '15_VZ3V'                           : '1.',
+        },
+    'type'  : 'shape',
+    }
+"""
 nuisances['Fastsim']  = {
     'name'  : 'Fastsim', 
     'samples'  : {
@@ -236,7 +256,7 @@ nuisances['Fastsim']  = {
 #    'name'  : 'Trigger', 
 #    'samples'  : {
 #        'T'                             : '1.',
-#        '03_VZ'                            : '1.',
+#        '03_ZZ'                            : '1.',
 #        '04_TTTo2L2Nu'                     : '1.',
 #        '06_WW'                            : '1.',
 #        '05_ST'                            : '1.',
@@ -245,7 +265,7 @@ nuisances['Fastsim']  = {
 #        '07_ZJetsHT_DYcorr'                         : '1.',
 #        '02_WZTo3LNu'                      : '1.',
 #        '11_HWW'                           : '1.',
-#        '13_VVV'                           : '1.',
+#        '15_VZ3V'                           : '1.',
 #        },
 #    'type'  : 'shape',
 #    }
@@ -254,16 +274,16 @@ nuisances['Trigger']  = {
     'name'  : 'Trigger', 
     'samples'  : {
         'T'                             : '1.02',
-        #'03_VZ'                            : '1.02',
+        #'03_ZZ'                            : '1.02',
         '04_TTTo2L2Nu'                     : '1.02',
         '06_WW'                            : '1.02',
         '05_ST'                            : '1.02',
         '09_TTW'                           : '1.02',
         #'10_TTZ'                           : '1.02',
         #'07_ZJetsHT_DYcorr'                         : '1.02',
-        '02_WZTo3LNu'                      : '1.02',
-        '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        #'02_WZTo3LNu'                      : '1.02',
+        '11_HWW'                           : '1.02',
+        '15_VZ3V'                           : '1.02',
         },
     'type'  : 'lnN',
     }
@@ -272,7 +292,7 @@ nuisances['Btag']  = {
     'name'  : 'Btag', 
     'samples'  : {
         'T'                             : '1.',
-        '03_VZ'                            : '1.',
+        '03_ZZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
@@ -281,7 +301,25 @@ nuisances['Btag']  = {
         '07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        '15_VZ3V'                           : '1.',
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['Btaglight']  = {
+    'name'  : 'Btaglight', 
+    'samples'  : {
+        'T'                             : '1.',
+        '03_ZZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                          : '1.',
+        '07_ZJetsHT_DYcorr'                         : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        '11_HWW'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -298,6 +336,16 @@ nuisances['Pileup']  = {
     'name'  : 'Pileup', 
     'samples'  : {
         'T'                             : '1.',
+        #'03_ZZ'                            : '1.',
+        #'04_TTTo2L2Nu'                     : '1.',
+        #'06_WW'                            : '1.',
+        #'05_ST'                            : '1.',
+        #'09_TTW'                           : '1.',
+        #'10_TTZ'                          : '1.',
+        #'07_ZJetsHT_DYcorr'                         : '1.',
+        #'02_WZTo3LNu'                      : '1.',
+        #'11_HWW'                           : '1.',
+        #'15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -314,6 +362,7 @@ nuisances['Isrnjet']  = {
     'name'  : 'Isrnjet', 
     'samples'  : {
         'T'                             : '1.',
+        #'04_TTTo2L2Nu'                  : '1.',
         },
     'type'  : 'shape',
     }
@@ -322,7 +371,7 @@ nuisances['JES']  = {
     'name'  : 'JES', 
     'samples'  : {
         'T'                             : '1.',
-        '03_VZ'                            : '1.',
+        '03_ZZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
@@ -331,7 +380,7 @@ nuisances['JES']  = {
         '07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -340,7 +389,7 @@ nuisances['MET']  = {
     'name'  : 'MET', 
     'samples'  : {
         'T'                             : '1.',
-        '03_VZ'                            : '1.',
+        '03_ZZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
         '05_ST'                            : '1.',
@@ -349,7 +398,7 @@ nuisances['MET']  = {
         '07_ZJetsHT_DYcorr'                         : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -359,7 +408,8 @@ nuisances['MET']  = {
 nuisances['Q2']  = {
     'name'  : 'Q2', 
     'samples'  : {
-        '03_VZ'                            : '1.',
+        #'T'                             : '1.',
+        '03_ZZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
         #'05_ST'                            : '1.',
@@ -368,7 +418,7 @@ nuisances['Q2']  = {
         '07_ZJetsHT_DYcorr'                       : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -376,7 +426,7 @@ nuisances['Q2']  = {
 nuisances['PDF']  = {
     'name'  : 'PDF', 
     'samples'  : {
-        '03_VZ'                            : '1.',
+        '03_ZZ'                            : '1.',
         '04_TTTo2L2Nu'                     : '1.',
         '06_WW'                            : '1.',
         #'05_ST'                            : '1.',
@@ -385,7 +435,7 @@ nuisances['PDF']  = {
         '07_ZJetsHT_DYcorr'                       : '1.',
         '02_WZTo3LNu'                      : '1.',
         '11_HWW'                           : '1.',
-        '13_VVV'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -405,7 +455,16 @@ nuisances['Toppt']  = {
 nuisances['Fake']  = {
     'name'  : 'Fake', 
     'samples'  : {
-        '04_TTTo2L2Nu'                      : '1.',
+        '03_ZZ'                            : '1.',
+        '04_TTTo2L2Nu'                     : '1.',
+        '06_WW'                            : '1.',
+        '05_ST'                            : '1.',
+        '09_TTW'                           : '1.',
+        '10_TTZ'                           : '1.',
+        '07_ZJetsHT_DYcorr'                       : '1.',
+        '02_WZTo3LNu'                      : '1.',
+        '11_HWW'                           : '1.',
+        '15_VZ3V'                           : '1.',
         },
     'type'  : 'shape',
     }
@@ -416,40 +475,39 @@ nuisances['stat']  = {
     # apply to the following samples: name of samples here must match keys in samples.py
     'samples'  : {
         
-        'T'                           : {
+        'T'            : {
             'typeStat' : 'bbb',
             },
-        
         '04_TTTo2L2Nu': {
             'typeStat' : 'bbb',
-                         },  
+            },  
         '05_ST': {
             'typeStat' : 'bbb',
-                         },  
+            },  
         '06_WW': {
             'typeStat' : 'bbb',
-                         }, 
-        '03_VZ': {
+            }, 
+        '03_ZZ': {
             'typeStat' : 'bbb',
-                         },
+            },
         '09_TTW': {
             'typeStat' : 'bbb',
-                         }, 
+            }, 
         '10_TTZ': {
             'typeStat' : 'bbb',
-                         },  
+            },  
         '07_ZJetsHT_DYcorr': {
             'typeStat' : 'bbb',
-                         }, 
+            }, 
         '02_WZTo3LNu': {
             'typeStat' : 'bbb',
-                         },  
+            },  
         '11_HWW': {
             'typeStat' : 'bbb',
-                         },   
-        '13_VVV': {
+            },   
+        '15_VZ3V': {
             'typeStat' : 'bbb',
-                         },                                
+            },                                
         },
     'type'  : 'shape'
     }
@@ -548,7 +606,7 @@ nuisances['MT2llBin4Bin5Bin6Bin7SR2Top']  = {
         '04_TTTo2L2Nu' : '0.05',
         '05_ST'        : '0.05',
         },
-    'cuts'  : 
+    'cuts'  : {
         'SR2_' : '1.00',
         },
     'type'  : 'shape',
@@ -619,7 +677,7 @@ nuisances['MT2llBin4Bin5Bin6Bin7WW']  = {
     }
 """
 # MT2ll correlate nothing
-
+"""
 nuisances['MT2llBin4TopSR1']  = {
     'name'  : 'MT2llBin4TopSR1',  
     'samples'  : {
@@ -894,443 +952,395 @@ nuisances['MT2llBin7WWSR3']  = {
         },
     'type'  : 'shape',
     }
+"""
+# MT2ll V9C new style
 
+nuisances['MT2llBinWWSR1']  = {
+    'name'  : 'MT2llBinWWSR1',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR2']  = {
+    'name'  : 'MT2llBinWWSR2',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR3']  = {
+    'name'  : 'MT2llBinWWSR3',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR1']  = {
+    'name'  : 'MT2llBinTopSR1',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR2']  = {
+    'name'  : 'MT2llBinTopSR2',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR3']  = {
+    'name'  : 'MT2llBinTopSR3',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+# MT2ll V11mtll40 new style
+"""
+nuisances['MT2llBinWWSR1']  = {
+    'name'  : 'MT2llBinWWSR1',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR2']  = {
+    'name'  : 'MT2llBinWWSR2',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR3']  = {
+    'name'  : 'MT2llBinWWSR3',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR1']  = {
+    'name'  : 'MT2llBinTopSR1',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR2']  = {
+    'name'  : 'MT2llBinTopSR2',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR3']  = {
+    'name'  : 'MT2llBinTopSR3',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+"""
+# MT2ll uncorr NoJet
+"""
+nuisances['MT2llBinWWSR1']  = {
+    'name'  : 'MT2llBinWWSR1',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_Tag' :   {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        #'SR1_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        'SR1_NoTag' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        'SR1_Veto' :  {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR2']  = {
+    'name'  : 'MT2llBinWWSR2',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_Tag' :   {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        #'SR2_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        'SR2_NoTag' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        'SR2_Veto' :  {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR3']  = {
+    'name'  : 'MT2llBinWWSR3',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_Tag' :   {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        #'SR3_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        'SR3_NoTag' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        'SR3_Veto' :  {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR1']  = {
+    'name'  : 'MT2llBinTopSR1',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_Tag' :   {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        #'SR1_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        'SR1_NoTag' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        'SR1_Veto' :  {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR2']  = {
+    'name'  : 'MT2llBinTopSR2',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_Tag' :   {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        #'SR2_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        'SR2_NoTag' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        'SR2_Veto' :  {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR3']  = {
+    'name'  : 'MT2llBinTopSR3',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_Tag' :   {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        #'SR3_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        'SR3_NoTag' : {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        'SR3_Veto' :  {'Bin4': '0.05', 'Bin5': '0.10', 'Bin6': '0.20', 'Bin7': '0.30', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR1NoJet']  = {
+    'name'  : 'MT2llBinTopSR1NoJet',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR2NoJet']  = {
+    'name'  : 'MT2llBinTopSR2NoJet',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinTopSR3NoJet']  = {
+    'name'  : 'MT2llBinTopSR3NoJet',  
+    'samples'  : {
+        '04_TTTo2L2Nu' : '1.00',
+        '05_ST' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR1NoJet']  = {
+    'name'  : 'MT2llBinWWSR1NoJet',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR1_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR2NoJet']  = {
+    'name'  : 'MT2llBinWWSR2NoJet',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR2_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+
+nuisances['MT2llBinWWSR3NoJet']  = {
+    'name'  : 'MT2llBinWWSR3NoJet',  
+    'samples'  : {
+        '06_WW' : '1.00',
+        },
+    'cuts'  : {
+        'SR3_NoJet' : {'Bin4': '0.05', 'Bin5': '0.15', 'Bin6': '0.40', 'Bin7': '0.40', },
+        },
+    'type'  : 'shape',
+    }
+"""
 # rateParam ttbar
 
-nuisances['Topnorm_SR1_em']  = {
-    'name'  : 'Topnorm_SR1_em',
+nuisances['Topnorm_SR1']  = {
+    'name'  : 'Topnorm_SR1',
     'samples'  : {
         '04_TTTo2L2Nu' : '1.00',
         '05_ST' : '1.00',
         },
     'type'  : 'rateParam',
     'cuts'  : {
-        'SR1_Tag_em' : '1.00',
-        'SR1_Veto_em' : '1.00',
-        'SR1_NoTag_em' : '1.00',
-        'SR1_NoJet_em' : '1.00',
+        'SR1_Tag' : '1.00',
+        'SR1_Veto' : '1.00',
+        'SR1_NoTag' : '1.00',
+        'SR1_NoJet' : '1.00',
         },
     }
 
-nuisances['Topnorm_SR1_ee']  = {
-    'name'  : 'Topnorm_SR1_ee',
+nuisances['Topnorm_SR2']  = {
+    'name'  : 'Topnorm_SR2',
     'samples'  : {
         '04_TTTo2L2Nu' : '1.00',
         '05_ST' : '1.00',
         },
     'type'  : 'rateParam',
     'cuts'  : {
-        'SR1_Tag_ee' : '1.00',
-        'SR1_Veto_ee' : '1.00',
-        'SR1_NoTag_ee' : '1.00',
-        'SR1_NoJet_ee' : '1.00',
+        'SR2_Tag' : '1.00',
+        'SR2_Veto' : '1.00',
+        'SR2_NoTag' : '1.00',
+        'SR2_NoJet' : '1.00',
         },
     }
 
-nuisances['Topnorm_SR1_mm']  = {
-    'name'  : 'Topnorm_SR1_mm',
+nuisances['Topnorm_SR3']  = {
+    'name'  : 'Topnorm_SR3',
     'samples'  : {
         '04_TTTo2L2Nu' : '1.00',
         '05_ST' : '1.00',
         },
     'type'  : 'rateParam',
     'cuts'  : {
-        'SR1_Tag_mm' : '1.00',
-        'SR1_Veto_mm' : '1.00',
-        'SR1_NoTag_mm' : '1.00',
-        'SR1_NoJet_mm' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR1_ll']  = {
-    'name'  : 'Topnorm_SR1_ll',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR1_Tag_ll' : '1.00',
-        'SR1_Veto_ll' : '1.00',
-        'SR1_NoTag_ll' : '1.00',
-        'SR1_NoJet_ll' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR1_sf']  = {
-    'name'  : 'Topnorm_SR1_sf',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR1_Tag_sf' : '1.00',
-        'SR1_Veto_sf' : '1.00',
-        'SR1_NoTag_sf' : '1.00',
-        'SR1_NoJet_sf' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR2_em']  = {
-    'name'  : 'Topnorm_SR2_em',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_em' : '1.00',
-        'SR2_Veto_em' : '1.00',
-        'SR2_NoTag_em' : '1.00',
-        'SR2_NoJet_em' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR2_ee']  = {
-    'name'  : 'Topnorm_SR2_ee',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_ee' : '1.00',
-        'SR2_Veto_ee' : '1.00',
-        'SR2_NoTag_ee' : '1.00',
-        'SR2_NoJet_ee' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR2_mm']  = {
-    'name'  : 'Topnorm_SR2_mm',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_mm' : '1.00',
-        'SR2_Veto_mm' : '1.00',
-        'SR2_NoTag_mm' : '1.00',
-        'SR2_NoJet_mm' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR2_ll']  = {
-    'name'  : 'Topnorm_SR2_ll',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_ll' : '1.00',
-        'SR2_Veto_ll' : '1.00',
-        'SR2_NoTag_ll' : '1.00',
-        'SR2_NoJet_ll' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR2_sf']  = {
-    'name'  : 'Topnorm_SR2_sf',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_sf' : '1.00',
-        'SR2_Veto_sf' : '1.00',
-        'SR2_NoTag_sf' : '1.00',
-        'SR2_NoJet_sf' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR3_em']  = {
-    'name'  : 'Topnorm_SR3_em',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_em' : '1.00',
-        'SR3_Veto_em' : '1.00',
-        'SR3_NoTag_em' : '1.00',
-        'SR3_NoJet_em' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR3_ee']  = {
-    'name'  : 'Topnorm_SR3_ee',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_ee' : '1.00',
-        'SR3_Veto_ee' : '1.00',
-        'SR3_NoTag_ee' : '1.00',
-        'SR3_NoJet_ee' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR3_mm']  = {
-    'name'  : 'Topnorm_SR3_mm',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_mm' : '1.00',
-        'SR3_Veto_mm' : '1.00',
-        'SR3_NoTag_mm' : '1.00',
-        'SR3_NoJet_mm' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR3_ll']  = {
-    'name'  : 'Topnorm_SR3_ll',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_ll' : '1.00',
-        'SR3_Veto_ll' : '1.00',
-        'SR3_NoTag_ll' : '1.00',
-        'SR3_NoJet_ll' : '1.00',
-        },
-    }
-
-nuisances['Topnorm_SR3_sf']  = {
-    'name'  : 'Topnorm_SR3_sf',
-    'samples'  : {
-        '04_TTTo2L2Nu' : '1.00',
-        '05_ST' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_sf' : '1.00',
-        'SR3_Veto_sf' : '1.00',
-        'SR3_NoTag_sf' : '1.00',
-        'SR3_NoJet_sf' : '1.00',
+        'SR3_Tag' : '1.00',
+        'SR3_Veto' : '1.00',
+        'SR3_NoTag' : '1.00',
+        'SR3_NoJet' : '1.00',
         },
     }
 
 # rateParam WW
 
-nuisances['WWnorm_SR1_em']  = {
-    'name'  : 'WWnorm_SR1_em',
+nuisances['WWnorm_SR1']  = {
+    'name'  : 'WWnorm_SR1',
     'samples'  : {
         '06_WW' : '1.00',
         },
     'type'  : 'rateParam',
     'cuts'  : {
-        'SR1_Tag_em' : '1.00',
-        'SR1_Veto_em' : '1.00',
-        'SR1_NoTag_em' : '1.00',
-        'SR1_NoJet_em' : '1.00',
+        'SR1_Tag' : '1.00',
+        'SR1_Veto' : '1.00',
+        'SR1_NoTag' : '1.00',
+        'SR1_NoJet' : '1.00',
         },
     }
 
-nuisances['WWnorm_SR1_ee']  = {
-    'name'  : 'WWnorm_SR1_ee',
+nuisances['WWnorm_SR2']  = {
+    'name'  : 'WWnorm_SR2',
     'samples'  : {
         '06_WW' : '1.00',
         },
     'type'  : 'rateParam',
     'cuts'  : {
-        'SR1_Tag_ee' : '1.00',
-        'SR1_Veto_ee' : '1.00',
-        'SR1_NoTag_ee' : '1.00',
-        'SR1_NoJet_ee' : '1.00',
+        'SR2_Tag' : '1.00',
+        'SR2_Veto' : '1.00',
+        'SR2_NoTag' : '1.00',
+        'SR2_NoJet' : '1.00',
         },
     }
 
-nuisances['WWnorm_SR1_mm']  = {
-    'name'  : 'WWnorm_SR1_mm',
+nuisances['WWnorm_SR3']  = {
+    'name'  : 'WWnorm_SR3',
     'samples'  : {
         '06_WW' : '1.00',
         },
     'type'  : 'rateParam',
     'cuts'  : {
-        'SR1_Tag_mm' : '1.00',
-        'SR1_Veto_mm' : '1.00',
-        'SR1_NoTag_mm' : '1.00',
-        'SR1_NoJet_mm' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR1_ll']  = {
-    'name'  : 'WWnorm_SR1_ll',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR1_Tag_ll' : '1.00',
-        'SR1_Veto_ll' : '1.00',
-        'SR1_NoTag_ll' : '1.00',
-        'SR1_NoJet_ll' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR1_sf']  = {
-    'name'  : 'WWnorm_SR1_sf',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR1_Tag_sf' : '1.00',
-        'SR1_Veto_sf' : '1.00',
-        'SR1_NoTag_sf' : '1.00',
-        'SR1_NoJet_sf' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR2_em']  = {
-    'name'  : 'WWnorm_SR2_em',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_em' : '1.00',
-        'SR2_Veto_em' : '1.00',
-        'SR2_NoTag_em' : '1.00',
-        'SR2_NoJet_em' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR2_ee']  = {
-    'name'  : 'WWnorm_SR2_ee',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_ee' : '1.00',
-        'SR2_Veto_ee' : '1.00',
-        'SR2_NoTag_ee' : '1.00',
-        'SR2_NoJet_ee' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR2_mm']  = {
-    'name'  : 'WWnorm_SR2_mm',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_mm' : '1.00',
-        'SR2_Veto_mm' : '1.00',
-        'SR2_NoTag_mm' : '1.00',
-        'SR2_NoJet_mm' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR2_ll']  = {
-    'name'  : 'WWnorm_SR2_ll',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_ll' : '1.00',
-        'SR2_Veto_ll' : '1.00',
-        'SR2_NoTag_ll' : '1.00',
-        'SR2_NoJet_ll' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR2_sf']  = {
-    'name'  : 'WWnorm_SR2_sf',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR2_Tag_sf' : '1.00',
-        'SR2_Veto_sf' : '1.00',
-        'SR2_NoTag_sf' : '1.00',
-        'SR2_NoJet_sf' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR3_em']  = {
-    'name'  : 'WWnorm_SR3_em',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_em' : '1.00',
-        'SR3_Veto_em' : '1.00',
-        'SR3_NoTag_em' : '1.00',
-        'SR3_NoJet_em' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR3_ee']  = {
-    'name'  : 'WWnorm_SR3_ee',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_ee' : '1.00',
-        'SR3_Veto_ee' : '1.00',
-        'SR3_NoTag_ee' : '1.00',
-        'SR3_NoJet_ee' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR3_mm']  = {
-    'name'  : 'WWnorm_SR3_mm',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_mm' : '1.00',
-        'SR3_Veto_mm' : '1.00',
-        'SR3_NoTag_mm' : '1.00',
-        'SR3_NoJet_mm' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR3_ll']  = {
-    'name'  : 'WWnorm_SR3_ll',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_ll' : '1.00',
-        'SR3_Veto_ll' : '1.00',
-        'SR3_NoTag_ll' : '1.00',
-        'SR3_NoJet_ll' : '1.00',
-        },
-    }
-
-nuisances['WWnorm_SR3_sf']  = {
-    'name'  : 'WWnorm_SR3_sf',
-    'samples'  : {
-        '06_WW' : '1.00',
-        },
-    'type'  : 'rateParam',
-    'cuts'  : {
-        'SR3_Tag_sf' : '1.00',
-        'SR3_Veto_sf' : '1.00',
-        'SR3_NoTag_sf' : '1.00',
-        'SR3_NoJet_sf' : '1.00',
+        'SR3_Tag' : '1.00',
+        'SR3_Veto' : '1.00',
+        'SR3_NoTag' : '1.00',
+        'SR3_NoJet' : '1.00',
         },
     }
 

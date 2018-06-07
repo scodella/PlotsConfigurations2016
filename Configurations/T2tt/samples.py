@@ -62,7 +62,7 @@ samples['09_TTW'] = {  'name': ['09_TTW.root'],
                        'weights': ['1'] 
                        }
 
-samples['03_VZ'] = {  'name': ['03_VZ.root'],    
+samples['03_ZZ'] = {  'name': ['03_ZZ.root'],    
                              'weight' : 'baseW', 
                              'weights': ['1'] 
                              }
@@ -82,7 +82,7 @@ samples['11_HWW'] = {  'name': ['11_HWW.root'],
                        'weights': ['1'] 
                        }
 
-samples['13_VVV'] = {  'name': ['13_VVV.root'],    
+samples['15_VZ3V'] = {  'name': ['15_VZ3V.root'],    
                        'weight' : 'baseW', 
                        'weights': ['1'] 
                        }

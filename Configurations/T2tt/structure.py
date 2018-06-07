@@ -44,7 +44,7 @@ structure['09_TTW']  = {
     'isData'   : 0 
     }
 
-structure['03_VZ']  = {  
+structure['03_ZZ']  = {  
     'isSignal' : 0,
     'isData'   : 0 
     }
@@ -59,7 +59,7 @@ structure['11_HWW']  = {
     'isData'   : 0 
     }
   
-structure['13_VVV']  = {  
+structure['15_VZ3V']  = {  
     'isSignal' : 0,
     'isData'   : 0 
     }

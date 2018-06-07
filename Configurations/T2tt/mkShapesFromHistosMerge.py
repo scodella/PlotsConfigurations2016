@@ -121,18 +121,6 @@ class ShapeFactory:
                   for iBin in range(1, nBins+1):
                       yValue = histo.GetBinContent(iBin)
                       histo.SetBinError(iBin, math.sqrt(abs(yValue)))
-              #if "SR1_NoJet/h_MT2ll_sf" in shapeName :
-              #    print "got", shapeName
-              #    histo.SetBinContent(2, 28.)
-              #    histo.SetBinError(2, math.sqrt(28.))
-              #    histo.SetBinContent(3, 36.)
-              #    histo.SetBinError(3, math.sqrt(36.))
-              #if "SR1_NoJet/h_MT2ll_em" in shapeName :
-              #    print "got", shapeName
-              #    histo.SetBinContent(5, 26.)
-              #    histo.SetBinError(5, math.sqrt(26.))
-              #    histo.SetBinContent(2, 29.)
-              #    histo.SetBinError(2, math.sqrt(29.))
               self._outFile.cd(cutName + "/" + variableName)
               histo.Write()
               fileIn.Close()
@@ -213,7 +201,7 @@ class ShapeFactory:
                             nBins = histoTemplate.GetNbinsX()
                             xInitial = histoTemplate.GetBinLowEdge(1)
                             xFinal = histoTemplate.GetBinLowEdge(nBins+1)
-                            normTemp = histoTemplate.Integral()
+                            #normTemp = histoTemplate.Integral()
 
                             for cut_in_use in nuisance['cuts'] : 
                                 if cut_in_use in cutName :
@@ -231,9 +219,12 @@ class ShapeFactory:
                                             yError = histoTemplate.GetBinError(iBin)
                                             yShift = 0.
 
-                                            this_bin = "Bin" + str(iBin)
+                                            this_bin = "Bin" + str(iBin+2)
                                             if this_bin == bin_in_use :
-                                                yShift = yValue * float(nuisance['cuts'][cut_in_use][bin_in_use])
+                                                uncRel = float(nuisance['cuts'][cut_in_use][bin_in_use])
+                                                if bin_in_use=="Bin4" :
+                                                    uncRel = 0.02
+                                                yShift = yValue * uncRel 
                                                 yError = yShift
 
                                             histoBinUp.SetBinContent(iBin, yValue + yShift)
@@ -302,7 +293,7 @@ class ShapeFactory:
                       for iBin in range(1, nBins+1):
                           
                           yValue = histoTemplate.GetBinContent(iBin)
-                          yError = histoTemplate.GetBinError(iBin)/3.
+                          yError = histoTemplate.GetBinError(iBin)
 
                           ValueUp = yValue + yError
                           ValueDo = yValue - yError
@@ -422,10 +413,41 @@ class ShapeFactory:
                       
                       fileIn.Close()
 
+    def _mergeBins(self, histo):
+
+        fitHisto = ROOT.TH1F('fitHisto', '', 5, 0, 5)
+        
+        thisBin = 1
+        thisBinContent = 0.
+        thisBinError = 0.
+
+        nBins = histo.GetNbinsX()
+        for iBin in range(1, nBins+1):
+
+            yValue = histo.GetBinContent(iBin)
+            yError = histo.GetBinError(iBin)
+            if ((histo.GetXaxis().GetBinCenter(iBin-1)<40 and histo.GetXaxis().GetBinCenter(iBin)>40) or 
+                (histo.GetXaxis().GetBinCenter(iBin)>80) ):
+                fitHisto.SetBinContent(thisBin, thisBinContent)
+                fitHisto.SetBinError(thisBin, math.sqrt(thisBinError))
+                thisBinContent = 0.
+                thisBinError = 0.
+                thisBin = thisBin + 1
+            thisBinContent += yValue
+            thisBinError += (yError*yError)
+
+        fitHisto.SetBinContent(thisBin, thisBinContent)
+        fitHisto.SetBinError(thisBin, math.sqrt(thisBinError))
+
+        return fitHisto;
+
 
     def _checkBadBins(self, histo, lumi, sampleName, thisShapeName):
 
-        if lumi<0.:
+        if lumi<-1. :
+            return self._mergeBins(histo)
+
+        if lumi==-1. :
             return histo
 
         histo.Scale(lumi)
@@ -455,16 +477,12 @@ class ShapeFactory:
                     elif (sampleName=="T" or sampleName==" ") :
                         #print " turning off ", sampleName
                         ApplyZeroStat = False
-                        #if ((iBin==1 or histo.GetBinContent(iBin-1)>0.005) and (iBin==nBins or histo.GetBinContent(iBin+1)>0.005)) :
-                        #    ApplyZeroStat = True
                     if ApplyZeroStat :
                         histo.SetBinError(iBin, 1.84102*AverageWeight)
               
         #for iBin in range(2, nBins+1):
          #   yValue = histo.GetBinContent(iBin)
-            
-
-          
+                      
         histoIntegralCorrected = histo.Integral()
         if (histoIntegralCorrected!=0 and histoIntegral > 0) :
             histo.Scale(histoIntegral/histoIntegralCorrected)
@@ -488,8 +506,8 @@ class ShapeFactory:
                 histo.Scale(1.06)
                 #print "Scaling ZZ Veto"
 
-        return histo
-
+        return self._mergeBins(histo)
+        
     def _readShape(self, fileIn, thisShapeName):
 
         if "_sf" not in thisShapeName:
@@ -510,55 +528,19 @@ class ShapeFactory:
             histo1  = self._readShape(fileIn, thisShapeName.replace("_Veto", "_NoTag"))
             histo2  = self._readShape(fileIn, thisShapeName.replace("_Veto", "_NoJet"))
             histo1.Add(histo2)
-            #gstr = ""
-            #if "gen" in thisShapeName:
-            #    gstr = "gen"
-            #histo3  = self._readShape(fileIn, thisShapeName.replace("SR1" + gstr + "_Veto", "SR2" + gstr + "_NoTag"))
-            #histo4  = self._readShape(fileIn, thisShapeName.replace("SR1" + gstr + "_Veto", "SR2" + gstr + "_NoJet"))
-            #histo5  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr + "_Veto/h_MT2ll", "SR3" + gstr + "_NoTag/h_MT2llisr"))
-            #histo6  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr + "_Veto/h_MT2ll", "SR3" + gstr + "_NoJet/h_MT2llisr"))
-            #histo5  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr + "_Veto", "SR3" + gstr + "_NoTag"))
-            #histo6  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr + "_Veto", "SR3" + gstr + "_NoJet"))
-            #histo1.Add(histo3)
-            #histo1.Add(histo4)
-            #histo1.Add(histo5)
-            #histo1.Add(histo6)
             return self._checkBadBins(histo1, lumi, sampleName, thisShapeName)
-        #elif "_Tag" in thisShapeName:
-        #    histo1  = self._readShape(fileIn, thisShapeName)
-        #    histo2  = self._readShape(fileIn, thisShapeName.replace("_Tag", "_NoJet"))
-        #    histo1.Add(histo2)
-        #    histo3  = self._readShape(fileIn, thisShapeName.replace("_Tag", "_NoTag"))
-        #    histo1.Add(histo3)
-        #    return self._checkBadBins(histo1, lumi, sampleName, thisShapeName)
         else :
             thisHisto = self._readShape(fileIn, thisShapeName)
-            #gstr = ""
-            #if "gen" in thisShapeName:
-            #    gstr = "gen"
-            #histo2  = self._readShape(fileIn, thisShapeName.replace("SR1" + gstr + "_", "SR2" + gstr + "_"))
-            #thisHisto.Add(histo2)
-            #if "_Tag" in thisShapeName :
-            #    histo3  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr +   "_Tag/h_MT2ll", "SR3" + gstr +   "_Tag/h_MT2llisr"))
-            #    thisHisto.Add(histo3)
-            #elif "_NoTag" in thisShapeName :
-            #    histo3  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr + "_NoTag/h_MT2ll", "SR3" + gstr + "_NoTag/h_MT2llisr"))
-            #    thisHisto.Add(histo3)
-            #elif "_NoJet" in thisShapeName :
-            #    histo3  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr + "_NoJet/h_MT2ll", "SR3" + gstr + "_NoJet/h_MT2llisr"))
-            #    thisHisto.Add(histo3)
-            #histo3  = self._readShape(fileIn, thisShapeName.replace("SR2" + gstr + "_", "SR3" + gstr + "_"))
-            #thisHisto.Add(histo3)
             return self._checkBadBins(thisHisto, lumi, sampleName, thisShapeName)
 
     def _getFastSimShape(self, fileIn, shapeName, shapeNameGen, lumi):
         
-        historeco = self._getShape(fileIn, " ", shapeName, -999.)
+        historeco = self._getShape(fileIn, " ", shapeName, -1.)
 
         if self._fastsimMet=="reco" :
             return self._checkBadBins(historeco, lumi, " ", " ")
         
-        histogen  = self._getShape(fileIn, " ", shapeNameGen, -999.)
+        histogen  = self._getShape(fileIn, " ", shapeNameGen, -1.)
         
         if self._fastsimMet=="gen" :
             return self._checkBadBins(histogen, lumi, " ", " ")
@@ -577,38 +559,6 @@ class ShapeFactory:
             histo.SetBinContent(iBin, yValue)
             histo.SetBinError(iBin, yError)
 
-        # Code for statistical studies
-        """
-        if "nominal" not in fileIn.GetName() :
-            inputNominalFile = fileIn.GetName() 
-            for nuisanceName, nuisance in nuisances.iteritems() :
-                if "/" + nuisanceName + "up/" in inputNominalFile :
-                    inputNominalFile = inputNominalFile.replace(nuisanceName + "up", "nominal")
-                if "/" + nuisanceName + "do/" in inputNominalFile :
-                    inputNominalFile = inputNominalFile.replace(nuisanceName + "do", "nominal")
-            fileNominalIn = ROOT.TFile(inputNominalFile, "READ")
-            histonominal = self._getShape(fileNominalIn, " ", shapeName, -999.)
-            for iBin in range(1, nBins+1):
-                nomY = histonominal.GetBinContent(iBin)
-                nomE = histonominal.GetBinError(iBin)
-                relE = 1.
-                if nomY>0. :
-                    relE = nomE/nomY
-                if relE>0.4 :
-                    histo.SetBinContent(iBin, 0.0001)
-                    histo.SetBinError(iBin, 0.00001)
-            fileNominalIn.Close()
-        else :
-            for iBin in range(1, nBins+1):
-                nomY = historeco.GetBinContent(iBin)
-                nomE = historeco.GetBinError(iBin)
-                relE = 1.
-                if nomY>0. :
-                    relE = nomE/nomY
-                if relE>0.4 :
-                    histo.SetBinContent(iBin, 0.0001)
-                    histo.SetBinError(iBin, 0.00001)
-        """
 
         return self._checkBadBins(histo, lumi, " ", " ")
 
